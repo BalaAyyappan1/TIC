@@ -422,6 +422,14 @@
 
             }
 
+            @media (max-width: 768px) {
+                .section-paragraph {
+                    font-size: 16px;
+                    width: 300px;
+                    bottom: 10px;
+                }
+            }
+
             .section-text-1 {
                 font-weight: 500;
                 font-size: 100px;
@@ -438,6 +446,17 @@
                 margin-top: 20px;
 
             }
+
+            @media (max-width: 768px) {
+                .section-text-1 {
+                    font-size: 40px;
+                    bottom: 110px;
+                letter-spacing: -0.91px;
+                    
+                }
+            }
+
+
 
             .nav-menu-overlay {
                 z-index: 1000;
@@ -458,7 +477,7 @@
         <section class="navbar-section-design">
 
             <div data-animation="default" class="navbar w-nav" data-easing2="ease" data-easing="ease" style="position: relative;
-                data-collapse=" medium" role="banner" data-no-scroll="1" data-duration="0" data-doc-height="1">
+                data-collapse="medium" role="banner" data-no-scroll="1" data-duration="0" data-doc-height="1">
                 <div class="navbar-expanded-content">
                     <div class="navbar-container-expanded"><a href="./index.html" aria-current="page"
                             class="navbar-logo-block w-inline-block w--current ">
@@ -567,7 +586,7 @@
                 </div>
 
 
-                <div class="section-text-1">
+                <div class="section-text-1" style>
                     Design House
                 </div>
                 <p class="section-paragraph">
@@ -576,7 +595,7 @@
                 </p>
         </section>
         <section class="video-section">
-            <div class="video-container" style="position: relative;">
+            <div class="video-container" style= "position: relative;">
                 <video autoplay muted loop width="100%" height="100%" playsinline poster="">
                     <source src="/Assets/vid.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
@@ -597,8 +616,54 @@
                 </div>
             </div>
         </section>
+        <style>
+            .projects-heading {
+              font-size: 114px;
+              line-height: 119px;
+              font-weight: 500;
+              text-align: center;
+              margin-bottom: 70px;
+            }
+          
+            @media (max-width: 768px) {
+              .projects-heading {
+                font-size: 64px;
+                line-height: 70px;
+              }
+            }
+          
+            @media (max-width: 480px) {
+              .projects-heading {
+                font-size: 42px;
+                line-height: 48px;
+              }
+            }
+            @media (max-width: 768) {
+                .topText {
+                 display: none;
+                }
 
-        <section class="slider-section" style="position: relative;">
+                .bottomText {
+                    display: none;
+                }
+              }
+
+            @media (max-width: 480px) {
+                .topText {
+                 display: none;
+                }
+
+                .bottomText {
+                    display: none;
+                }
+              }
+          </style>
+          
+          <h1 class="projects-heading">Projects</h1>
+          
+
+        <section class="slider-section" style="position: relative;" id="custom-cursor-section">
+
             <div class="slider-container" ">
                 <div class=" slider-track">
                 <!-- Clone of last slide (appears first) -->
@@ -624,16 +689,167 @@
                 </div>
             </div>
     </div>
-    <div class=""
+
+    <style>
+        .projects-description {
+            display: none;
+        }
+    </style>
+   
+    <div class="projects-description"
         style="position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%); width: 1278px; color: white; text-align: start; font-size: 18px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000;">
         We crafted the logo for Pointables to be more than just a mark—it's a movement. Clean lines, bold presence, and
         a hint of playfulness reflect the brand's mission to simplify action and amplify ideas. It's the kind of logo
         that speaks in a second but sticks for a lifetime—just like the brand itself. Designed in-house, powered by
         intention.
     </div>
+    <div class="cursor-pointer" style="position: absolute; top: 30%; left: 24%;  width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+        <img src="/Assets/cursor.svg" alt="Brandbook" >
+        <span style="padding-left: 20px;">  Click to view brandbook </span>
+      
+    </div>
     </section>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get references to all sections and cursors
+  const sliderSection = document.querySelector('.slider-section');
+  const horizontalSection = document.querySelector('.horizontal-section');
+  const caaraSection = document.querySelector('.caara');
+  const attarSection = document.querySelector('.Attar-Bazaar'); // Fixed variable name
+  const dogSection = document.querySelector('.dog-section');
+  
+  const cursorPointer = document.querySelector('.cursor-pointer');
+  const cursorPointerBlack = document.querySelector('.cursor-pointer-black');
+  const cursorPointerCaara = document.querySelector('.cursor-pointer-caara');
+  const cursorPointerAb = document.querySelector('.cursor-pointer-ab');
+  const cursorPointerDog = document.querySelector('.cursor-pointer-dog');
 
-    <section class="horizontal-section">
+  // Clone cursors for horizontal section
+  const horizontalCursorPointerBlack = cursorPointerBlack.cloneNode(true);
+  horizontalCursorPointerBlack.classList.add('horizontal-cursor-pointer-black');
+  horizontalSection.appendChild(horizontalCursorPointerBlack);
+
+  // Store original positions
+  const sliderOriginalPosition = {
+    top: cursorPointer.offsetTop - 120 + 'px',
+    right: cursorPointer.offsetRight + 'px'
+  };
+
+  const caaraOriginalPosition = {
+    top: cursorPointerCaara.offsetTop + 'px',
+    left: cursorPointerCaara.offsetLeft + 'px'
+  };
+
+  const abOriginalPosition = {
+    top: cursorPointerAb.offsetTop + 'px',
+    left: cursorPointerAb.offsetLeft + 'px'
+  };
+
+  const dogOriginalPosition = {
+    top: cursorPointerDog.offsetTop + 'px',
+    left: cursorPointerDog.offsetLeft + 'px'
+  };
+
+  // Set initial positions and styles
+  function initCursor(cursor, top, left, transform, zIndex = '1000') {
+    cursor.style.position = 'absolute';
+    cursor.style.top = top;
+    cursor.style.left = left;
+    cursor.style.transform = transform;
+    cursor.style.zIndex = zIndex;
+    cursor.style.display = 'none';
+    cursor.style.cursor = 'none';
+  }
+
+  // Initialize all cursors
+  initCursor(cursorPointer, sliderOriginalPosition.top, sliderOriginalPosition.right, 'translateX(2%)');
+  initCursor(cursorPointerBlack, sliderOriginalPosition.top, sliderOriginalPosition.right, 'translateX(2%)');
+  initCursor(horizontalCursorPointerBlack, '30%', '24%', 'translateX(2%)');
+  initCursor(cursorPointerCaara, caaraOriginalPosition.top, caaraOriginalPosition.left, 'translateX(2%)');
+  initCursor(cursorPointerAb, abOriginalPosition.top, abOriginalPosition.left, 'translateX(2%)');
+  initCursor(cursorPointerDog, dogOriginalPosition.top, dogOriginalPosition.left, 'translateX(2%)');
+
+  // Function to open PDF in new tab
+  function openPdfInNewTab(pdfPath) {
+    const link = document.createElement('a');
+    link.href = pdfPath;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // Set up click handlers
+  cursorPointer.addEventListener('click', () => openPdfInNewTab('/Assets/slider-section.pdf'));
+  horizontalCursorPointerBlack.addEventListener('click', () => openPdfInNewTab('/Assets/brandbook.pdf'));
+  cursorPointerCaara.addEventListener('click', () => openPdfInNewTab('/Assets/caara-brandbook.pdf'));
+  cursorPointerAb.addEventListener('click', () => openPdfInNewTab('/Assets/attar-bazaar-brandbook.pdf'));
+  cursorPointerDog.addEventListener('click', () => openPdfInNewTab('/Assets/berky-paws-brandbook.pdf'));
+
+  // Track mouse position in sections using objects to maintain reference
+  const sectionStates = {
+    isInSliderSection: false,
+    isInHorizontalSection: false,
+    isInCaaraSection: false,
+    isInAttarBazaarSection: false,
+    isInDogSection: false
+  };
+
+  // Handle section mouse events
+  function handleSectionEvents(section, cursor, stateKey) {
+    section.addEventListener('mouseenter', function() {
+      sectionStates[stateKey] = true;
+      document.body.style.cursor = 'none';
+      cursor.style.display = 'flex';
+      cursor.style.transition = 'transform 0.1s ease-out';
+      cursor.style.transform = 'translate(-50%, -50%)';
+    });
+
+    section.addEventListener('mouseleave', function() {
+      sectionStates[stateKey] = false;
+      document.body.style.cursor = '';
+      cursor.style.transition = 'all 0.5s ease-out';
+      cursor.style.display = 'none';
+    });
+
+    section.addEventListener('mousemove', function(e) {
+      if (sectionStates[stateKey]) {
+        const rect = section.getBoundingClientRect();
+        cursor.style.left = (e.clientX - rect.left) + 'px';
+        cursor.style.top = (e.clientY - rect.top) + 'px';
+      }
+    });
+  }
+
+  // Set up event listeners for all sections
+  handleSectionEvents(sliderSection, cursorPointer, 'isInSliderSection');
+  handleSectionEvents(horizontalSection, horizontalCursorPointerBlack, 'isInHorizontalSection');
+  handleSectionEvents(caaraSection, cursorPointerCaara, 'isInCaaraSection');
+  handleSectionEvents(attarSection, cursorPointerAb, 'isInAttarBazaarSection'); // Fixed section reference
+  handleSectionEvents(dogSection, cursorPointerDog, 'isInDogSection');
+});
+</script>
+
+
+    <!-- <style>
+        /* Default cursor for the whole page */
+        body {
+            cursor: default;
+        }
+        
+        /* Custom cursor only for the slider section */
+        #custom-cursor-section,
+    #custom-cursor-section *,
+    #custom-cursor-section .slider-container,
+    #custom-cursor-section .slider-track,
+    #custom-cursor-section .slider-item {
+        cursor: url('/Assets/cursor.svg'), pointer !important;
+    
+        }   
+    </style> -->
+   
+    <section class="horizontal-section " id="custom-cursor-section">
         <div class="pin-spacer">
             <div class="horizontal-container">
                 <div class="box one" style="width: 100%; height: 100%;">
@@ -656,6 +872,10 @@
                             brand's long-term intentions with developing the crypto space. The main focus of the logo is
                             the icon and it's use should reflect this.
                         </div>
+                        <div class="cursor-pointer-black" style="position: absolute; top: 10%; left: 5%; color:black; width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center; cursor: pointer;" onclick="openPDF('/Assets/lightspeed-brandbook.pdf', 'Lightspeed')">
+                            <img src="/Assets/cursor-black.svg" alt="Brandbook" style="color:black;">
+                            <span style="padding-left: 20px; color:black;">Click to view brandbook</span>
+                        </div>
                     </div>
                 </div>
                 <div class="box two">
@@ -671,6 +891,14 @@
                     </div>
 
                 </div>
+                <style>
+                    @media (max-width: 768px) {
+                    .box .two {
+                        font-size: 18px;
+
+                    }
+                    }
+                </style>
                 <div class="box three" style="padding: 10px; ">
                     <div style="display: flex; flex-direction: column; gap: 100px; ">
                         <div style="display: flex; flex-direction: row; gap: 350px; ">
@@ -820,20 +1048,229 @@
             </div>
         </div>
     </section>
+ <section class="caara" id="caara">
+        <div style="position: relative; ">
+            <img src="/Assets/caara loggo 1 (1).png" alt="Car" style="width: 100%; height: 100%; object-fit: cover; ">
+            <div class="caara-description" style="position: absolute; bottom: 0; left: 50%; transform: translate(-50%, -50%); color: rgba(255, 255, 255, 0.3); font-size: 18px; line-height: 24px; font-weight: 400; text-align: center;">
+                Caara isn’t just a jewelry brand—it’s a feeling.
+                <span style="font-size: 18px; font-weight: 400; display: block; text-align: center; width: 1309px; margin-top: -22px; ">
+                  <br />
+                  When we designed the logo, we imagined soft light, quiet elegance, and pieces that speak without saying too much. The result? A minimalistic mark that feels like a whisper in  gold. Clean. Airy. Intentional. Just like the jewelry, the logo doesn’t beg for attention—it earns it with grace. Designed to linger in memory, not just on paper.
+                </span>
+              </div>
 
+
+              <div class="cursor-pointer-caara" style="position: absolute; top: 30%; left: 24%;  width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                <img src="/Assets/cursor.svg" alt="Brandbook" >
+                <span style="padding-left: 20px;">  Click to view brandbook </span>
+              
+            </div>
+              
+        </div>
+    </section>
+    <style>
+        @media (max-width: 768px) {
+            .caara-description {
+                display: none;
+            }
+        }
+    </style>
+
+    <section class="caara-section2" style="">
+<img src="/Assets/Screenshot 2025-04-16 at 12.53.33 AM 1.png" alt="Car" style="width: 100%; height: 100%; object-fit: cover; ">
+    </section>
+
+    <section class="Amea" style="display: flex; flex-direction: column; gap: 100px; background-color: #FFF; justify-content: center; align-items: center; width: 100%; height: 100%; margin: 0 auto; padding-top: 100px; padding-bottom: 100px;">
+        <p class="amea-description" style="font-size: 18px; line-height: 24px; text-align: start; color: #424242; font-weight: 400; width: 80%; max-width: 800px; margin: 0 auto; padding: 0; letter-spacing: -1.12px; ">
+            The "AMAE" logo is a design triumph, blending an "empty A" with a customised serif typeface. The deliberate absence of a line in the first 'A' signifies openness, mirroring the emotional receptivity embedded in the Japanese concept. Connected AE letters convey unity and interdependence of the perfume, a visual manifestation of the brand's commitment to emotional bonds. The all caps, bold lettering exudes confidence, underlining the brand's assurance in delivering profound emotional experiences through its fragrances.
+        </p> 
+        <img src="/Assets/AMAE Logo Illustrator File 1 (1).svg" alt="AMAE Logo" style="width: 80%; max-width: 800px; height: auto; object-fit: contain; display: block; margin: 0 auto;">
+    </section>
+
+    <style>
+        @media (max-width: 768px) {
+            .amea-description {
+                font-size: 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            .amea-description {
+                font-size: 10px;
+            }
+        }
+    </style>
+<section class="Attar-Bazaar" style="position: relative;">
+    <img src="/Assets/Box Mockup 1 1.png" alt="Attar Bazaar" style="width: 100%; height: 100%; object-fit: cover; ">
+    <div class="cursor-pointer-ab" style="position: absolute; top: 30%; left: 24%;  width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+        <img src="/Assets/cursor.svg" alt="Brandbook" >
+        <span style="padding-left: 20px;">  Click to view brandbook </span>
+      
+    </div>
+</section>
+
+
+<section class="berky-paws" style="position: relative; height: 100vh; width: 100vw;  background-color: #4111D5;">
+    
+    <div class="berky-paws-logo" style="position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255, 255, 255, 0.3); font-size: 18px; line-height: 24px; font-weight: 400; text-align: center;">
+        <img src="/Assets/berkypawsLogo.svg" alt="Attar Bazaar" >
+    </div>
+
+    <div style="position: absolute; bottom: 0; width: 100%; padding-left: 10%; padding-right: 10%; left: 50%; transform: translate(-50%, -50%); color: rgba(255, 255, 255, 0.3); font-size: 18px; line-height: 24px; font-weight: 400; text-align: center; color: #F5F5F5;">
+        We built this logo & Packaging to make sure Playful Paws Meet Purrfect Products. We use vibrant purple (#6d00c2) and tangy orange (#ffb552) for our primary colors, playfully contrasted by a lineup of cool and techy tones that make up our supporting colors. 
+    </div>
+</section>
+<section  Class="dog-section" style="position: relative;">
+    <img src="/Assets/dog.png" style="width: 100%; object-fit: cover; " />
+    <div class="cursor-pointer-dog" style="position: absolute; top: 30%; left: 24%;  width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+        <img src="/Assets/cursor.svg" alt="Brandbook" >
+        <span style="padding-left: 20px;">  Click to view brandbook </span>
+      
+    </div>
+</section>
+<style>
+    @media (max-width: 1024px) {
+        .berky-paws{
+          height: 20vh;
+        }
+    }
+    @media (max-width: 768px) {
+        .berky-paws{
+          height: 20vh;
+        }
+    }
+    @media (max-width: 480px) {
+        .berky-paws{
+          height: 20vh;
+        }
+    }
+</style>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add event listeners for the new sections
+        const attarSection = document.querySelector('.Attar-Bazaar');
+        const dogSection = document.querySelector('.dog-section');
+        const attarCursor = document.querySelector('.cursor-pointer-attar');
+        const dogCursor = document.querySelector('.cursor-pointer-dog');
+        const abCursor = document.querySelector('.cursor-pointer-ab');
+        // Initialize cursors
+        function initCursor(cursor) {
+            cursor.style.position = 'absolute';
+            cursor.style.display = 'none';
+            cursor.style.pointerEvents = 'none';
+        }
+    
+        initCursor(attarCursor);
+        initCursor(dogCursor);
+    
+        // Function to handle section hover effects
+        function setupSectionHover(section, cursor) {
+            section.addEventListener('mouseenter', function() {
+                document.body.style.cursor = 'none';
+                cursor.style.display = 'flex';
+            });
+    
+            section.addEventListener('mouseleave', function() {
+                document.body.style.cursor = '';
+                cursor.style.display = 'none';
+            });
+    
+            section.addEventListener('mousemove', function(e) {
+                const rect = section.getBoundingClientRect();
+                cursor.style.left = e.clientX - rect.left + 'px';
+                cursor.style.top = e.clientY - rect.top + 'px';
+            });
+    
+            section.addEventListener('click', function() {
+                // Change the PDF path as needed
+                window.open('/Assets/brandbook.pdf', '_blank');
+            });
+        }
+    
+        setupSectionHover(attarSection, attarCursor);
+        setupSectionHover(dogSection, dogCursor);
+    });
+    </script>
+
+  
 
     <section class="Footer">
-        <div class="Footer-container">
-            <div class="Footer-content">
-                <div class="Footer-logo">
-                    <img src="/Assets/4.png" alt="Footer Logo">
+        <div class="section-work-news-contact">
+            <div class="container news-landing">
+             
+             
+             
+              <div class="w-layout-grid _2-col social">
+                <div class="card-s"><img
+                    src="https://ik.imagekit.io/99y1fc9mh/TIC_Globe/images/Free%20Signage%20Wall%20Mockup.jpg?updatedAt=1729853538414"
+                    loading="lazy"
+                    sizes="(max-width: 479px) 100vw, (max-width: 767px) 91vw, (max-width: 991px) 46vw, (max-width: 1919px) 47vw, 909.9921875px"
+                    alt="E&amp;W Design Studio Office Meeting Room" class="parallax-img" />
+                  <div class="card-title flex">
+                    <h3 class="text-color-white width-10">We’re always looking for new collaborations.<br /></h3>
+                    <div class="button-container-flex"><a href="./contact" class="primary-button-arrow-white w-inline-block">
+                        <div class="button-wrapper">
+                          <div class="link-button-text">Contact us</div><img
+                            src="https://cdn.prod.website-files.com/623c8e22ba071c15df8e9dd6/623c8e22ba071ca3218e9de0_arrow.svg"
+                            loading="lazy" alt="" class="arrow" />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <div class="Footer-links">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
+                <div class="card-s"><img
+                  src="https://ik.imagekit.io/99y1fc9mh/TIC_Globe/images/tic_mock.jpg?updatedAt=1729853516158"
+                  loading="lazy"
+                  sizes="(max-width: 479px) 100vw, (max-width: 767px) 91vw, (max-width: 991px) 46vw, (max-width: 1919px) 47vw, 909.9921875px"
+                  alt="E&amp;W Design Studio Office Meeting Room" class="parallax-img" />
+                <div class="card-title flex">
+                  <h3 class="text-color-white width-10">Check out our latest<br />news on instagram</h3>
+                  <div class="button-container-flex"><a href="https://www.instagram.com/the.internetcompany/" class="primary-button-arrow-white w-inline-block">
+                      <div class="button-wrapper">
+                        <div class="link-button-text">Go to Insta</div><img
+                          src="https://cdn.prod.website-files.com/623c8e22ba071c15df8e9dd6/623c8e22ba071ca3218e9de0_arrow.svg"
+                          loading="lazy" alt="" class="arrow" />
+                      </div>
+                    </a></div>
                 </div>
+              </div>
+               
+              </div>
             </div>
+          </div>
+        </div>
+        <div class="footer-black">
+          <div class="footer-inner invert">
+            <div class="footer-right"><a href="https://www.instagram.com/the.internetcompany/" target="_blank"
+                class="social-link-footer w-inline-block"><img
+                  src="https://cdn.prod.website-files.com/623c8e22ba071c15df8e9dd6/623c8e22ba071c1b248e9df3_Instagram%20-%20Negative.svg"
+                  loading="lazy" alt="" class="social-icon" /></a>
+                  
+                  <!-- <a href="#"
+                target="_blank" class="social-link-footer w-inline-block"><img
+                  src="https://cdn.prod.website-files.com/623c8e22ba071c15df8e9dd6/623c8e22ba071c81328e9df2_Facebook%20-%20Negative.svg"
+                  loading="lazy" alt="" class="social-icon" /></a> -->
+                  
+                  <a
+                href="https://www.linkedin.com/company/tic-global-services/mycompany/" target="_blank"
+                class="social-link-footer w-inline-block"><img
+                  src="https://cdn.prod.website-files.com/623c8e22ba071c15df8e9dd6/623c8e22ba071cc40e8e9df1_LinkedIn%20-%20Negative.svg"
+                  loading="lazy" alt="" class="social-icon" /></a>
+              <div class="locales_wrapper w-locales-list">
+                <div role="list" class="locales_list w-locales-items">
+                  <div role="listitem" class="footer-text w-locales-item"><a hreflang="en" href="/" aria-current="page"
+                      class="footer-link w--current">en</a></div>
+                  <div role="listitem" class="footer-text w-locales-item"></div>
+                </div>
+              </div>
+            </div>
+            <div class="footer-left">
+              <div class="footer-text">© Copyright TIC GLOBAL SERVICES <a
+                  href="mailto:admin@theinternetcompany.one" class="footer-link"><span class="__cf_email__"
+                    data-cfemail="2b42454d446b4e065c05584e"> / admin@theinternetcompany.one</span></div>
+            </div>
+          </div>
         </div>
     </section>
     <style>
