@@ -715,15 +715,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const sliderSection = document.querySelector('.slider-section');
   const horizontalSection = document.querySelector('.horizontal-section');
   const caaraSection = document.querySelector('.caara');
-  const attarSection = document.querySelector('.Attar-Bazaar'); // Fixed variable name
+  const attarSection = document.querySelector('.Attar-Bazaar'); 
   const dogSection = document.querySelector('.dog-section');
-  
+  const amaeSection = document.querySelector('.amae');
   const cursorPointer = document.querySelector('.cursor-pointer');
   const cursorPointerBlack = document.querySelector('.cursor-pointer-black');
   const cursorPointerCaara = document.querySelector('.cursor-pointer-caara');
   const cursorPointerAb = document.querySelector('.cursor-pointer-ab');
   const cursorPointerDog = document.querySelector('.cursor-pointer-dog');
-
+  const cursorPointerAmae = document.querySelector('.cursor-pointer-amae');
   // Clone cursors for horizontal section
   const horizontalCursorPointerBlack = cursorPointerBlack.cloneNode(true);
   horizontalCursorPointerBlack.classList.add('horizontal-cursor-pointer-black');
@@ -750,6 +750,11 @@ document.addEventListener('DOMContentLoaded', function() {
     left: cursorPointerDog.offsetLeft + 'px'
   };
 
+  const amaeOriginalPosition = {
+    top: cursorPointerAmae.offsetTop + 'px',
+    left: cursorPointerAmae.offsetLeft + 'px'
+  };
+
   // Set initial positions and styles
   function initCursor(cursor, top, left, transform, zIndex = '1000') {
     cursor.style.position = 'absolute';
@@ -768,7 +773,8 @@ document.addEventListener('DOMContentLoaded', function() {
   initCursor(cursorPointerCaara, caaraOriginalPosition.top, caaraOriginalPosition.left, 'translateX(2%)');
   initCursor(cursorPointerAb, abOriginalPosition.top, abOriginalPosition.left, 'translateX(2%)');
   initCursor(cursorPointerDog, dogOriginalPosition.top, dogOriginalPosition.left, 'translateX(2%)');
-
+  initCursor(cursorPointerAmae, amaeOriginalPosition.top, amaeOriginalPosition.left, 'translateX(2%)');
+  
   // Function to open PDF in new tab
   function openPdfInNewTab(pdfPath) {
     const link = document.createElement('a');
@@ -783,8 +789,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set up click handlers
   cursorPointer.addEventListener('click', () => openPdfInNewTab('/Assets/slider-section.pdf'));
   horizontalCursorPointerBlack.addEventListener('click', () => openPdfInNewTab('/Assets/brandbook.pdf'));
-  cursorPointerCaara.addEventListener('click', () => openPdfInNewTab('/Assets/caara-brandbook.pdf'));
-  cursorPointerAb.addEventListener('click', () => openPdfInNewTab('/Assets/attar-bazaar-brandbook.pdf'));
+  cursorPointerCaara.addEventListener('click', () => openPdfInNewTab('/Assets/caara blue.pdf'));
+  cursorPointerAb.addEventListener('click', () => openPdfInNewTab('/Assets/AMAE - BRAND BOOK.pdf'));
   cursorPointerDog.addEventListener('click', () => openPdfInNewTab('/Assets/berky-paws-brandbook.pdf'));
 
   // Track mouse position in sections using objects to maintain reference
@@ -871,7 +877,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             The main logo consists of a icon and wordmark. The wordmark is minimal but reflective of the
                             brand's long-term intentions with developing the crypto space. The main focus of the logo is
                             the icon and it's use should reflect this.
-                        </div>
+                        </div>  
                         <div class="cursor-pointer-black" style="position: absolute; top: 10%; left: 5%; color:black; width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center; cursor: pointer;" onclick="openPDF('/Assets/lightspeed-brandbook.pdf', 'Lightspeed')">
                             <img src="/Assets/cursor-black.svg" alt="Brandbook" style="color:black;">
                             <span style="padding-left: 20px; color:black;">Click to view brandbook</span>
@@ -882,8 +888,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div style="width:100%;  display: flex; flex-direction: column; gap: 50px; ">
                         <img src="/Assets/Palette.svg" alt="Paltter" width="90%"
                             style="width: 1200px; height: 200px; object-fit: contain;" />
-                        <div
-                            style="font-size: 24px; line-height: 100%; text-align: start; padding-left:50px; padding-right:200px; color: black; font-weight: 400;  display: flex; justify-content: center; align-items: center; ">
+                        <div class="box-two-text" style=" ">
                             Touching on the brand's concept of integrity and support Lightspeed Listing's color palette
                             blends a vibrant and dimmed blue with greyscale for a simple yet effective palette which
                             will be easy to utilize for the team.
@@ -891,16 +896,42 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
 
                 </div>
-                <style>
-                    @media (max-width: 768px) {
-                    .box .two {
-                        font-size: 18px;
+                <style>     
 
+                    .box-two-text{
+                        font-size: 24px; line-height: 100%; text-align: start; padding-left:180px; padding-right:200px; color: black; font-weight: 400;  display: flex; justify-content: center; align-items: center;}
+
+                    @media (max-width: 768px) {
+                    .box-two-text {
+                        padding-left: 0px;
+                        padding-right: 0px;
+                       
                     }
+                    }
+
+                    .box-three{
+                        display: flex; 
+                        flex-direction: column;
+                        gap: 100px; 
+                        
+                    }
+                    @media (max-width: 480px) {
+                        .box-three {
+                            font-size: 18px;
+                           
+                         
+                        }
+                    }
+                    @media (max-width: 768px) {
+                        .box-three {
+                            font-size: 18px;
+                            padding-left: 0px;
+                            padding-right: 0px;
+                        }
                     }
                 </style>
                 <div class="box three" style="padding: 10px; ">
-                    <div style="display: flex; flex-direction: column; gap: 100px; ">
+                    <div style="" class="box-three">
                         <div style="display: flex; flex-direction: row; gap: 350px; ">
                             <div style="display: flex; flex-direction: row; gap: 20px; ">
                                 <img src="/Assets/ivoryrec.png" alt="Paltter"
@@ -1080,10 +1111,15 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src="/Assets/Screenshot 2025-04-16 at 12.53.33 AM 1.png" alt="Car" style="width: 100%; height: 100%; object-fit: cover; ">
     </section>
 
-    <section class="Amea" style="display: flex; flex-direction: column; gap: 100px; background-color: #FFF; justify-content: center; align-items: center; width: 100%; height: 100%; margin: 0 auto; padding-top: 100px; padding-bottom: 100px;">
+    <section class="Amae" id="amae" style="display: flex; flex-direction: column; gap: 100px; background-color: #FFF; justify-content: center; align-items: center; width: 100%; height: 100%; margin: 0 auto; padding-top: 100px; padding-bottom: 100px;">
         <p class="amea-description" style="font-size: 18px; line-height: 24px; text-align: start; color: #424242; font-weight: 400; width: 80%; max-width: 800px; margin: 0 auto; padding: 0; letter-spacing: -1.12px; ">
             The "AMAE" logo is a design triumph, blending an "empty A" with a customised serif typeface. The deliberate absence of a line in the first 'A' signifies openness, mirroring the emotional receptivity embedded in the Japanese concept. Connected AE letters convey unity and interdependence of the perfume, a visual manifestation of the brand's commitment to emotional bonds. The all caps, bold lettering exudes confidence, underlining the brand's assurance in delivering profound emotional experiences through its fragrances.
         </p> 
+        <div class="cursor-pointer-amae" style="position: absolute; top: 30%; left: 24%;  width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+            <img src="/Assets/cursor.svg" alt="Brandbook" >
+            <span style="padding-left: 20px;">  Click to view brandbook </span>
+          
+        </div>
         <img src="/Assets/AMAE Logo Illustrator File 1 (1).svg" alt="AMAE Logo" style="width: 80%; max-width: 800px; height: auto; object-fit: contain; display: block; margin: 0 auto;">
     </section>
 
@@ -1315,6 +1351,13 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center;
         }
 
+        @media (max-width:480px) {
+            .box-two{
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+
         .box.three {
             width: 100vw;
             height: 100vh;
@@ -1325,6 +1368,13 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center;
         }
 
+
+        @media (max-width:480px) {
+            .box-three{
+                width: 70vw;
+                height: 100vh;
+            }
+        }
         .box.four {
             width: 100vw;
             height: 100vh;
