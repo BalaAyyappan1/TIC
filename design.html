@@ -524,6 +524,10 @@
                                             class="menu-small text-color-white">About </h2>
 
                                     </a>
+                                    <a href="/design.html" class="menu-links w-inline-block">
+                                        <h2 data-w-id="6b2c213d-3399-b26b-54a9-7c96a9a0s1d35" class="menu-small text-color-white">Design House </h2>
+                                       
+                                      </a>
                                     <a href="/comingsoon.html" class="menu-links w-inline-block">
                                         <h2 data-w-id="6b2c213d-3399-b26b-54a9-7c96a9a01d3e"
                                             class="menu-small text-color-white">Client
@@ -885,8 +889,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 <div class="box two">
-                    <div style="width:100%;  display: flex; flex-direction: column; gap: 50px; ">
-                        <img src="/Assets/Palette.svg" alt="Paltter" width="90%"
+                    <div class="box-two-container" style="width:100%;  display: flex; flex-direction: column; ">
+                        <img src="/Assets/Palette.svg" alt="Paltter" width="90%" class="palette-image"
                             style="width: 1200px; height: 200px; object-fit: contain;" />
                         <div class="box-two-text" style=" ">
                             Touching on the brand's concept of integrity and support Lightspeed Listing's color palette
@@ -898,14 +902,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <style>     
 
+                .palette-image{
+                    width: 1200px;
+                    height: 200px;
+                    object-fit: contain;
+                }
+
+                @media (max-width: 480px) {
+                    .palette-image{
+                        width: 50%;
+                        height: 50%;
+                        object-fit: cover;
+                    }
+                }
+
+                .box-two-container{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 50px;
+                }
+
+                @media (max-width: 480px) {
+                    .box-two-container{
+                        gap: 10px;
+                    }
+                }
+
                     .box-two-text{
                         font-size: 24px; line-height: 100%; text-align: start; padding-left:180px; padding-right:200px; color: black; font-weight: 400;  display: flex; justify-content: center; align-items: center;}
 
-                    @media (max-width: 768px) {
+                    @media (max-width: 480px) {
                     .box-two-text {
                         padding-left: 0px;
                         padding-right: 0px;
-                       
+                        font-size: 12px;
                     }
                     }
 
@@ -918,10 +948,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     @media (max-width: 480px) {
                         .box-three {
                             font-size: 18px;
-                           
+                            gap: 70px;
+                           margin-left: 500px;
+                           padding-left: 100px;
                          
                         }
                     }
+                    @media(max-width: 480px){
+                        .box-three{
+                          min-width: 190vw;
+                        }
+                    }
+
                     @media (max-width: 768px) {
                         .box-three {
                             font-size: 18px;
@@ -929,88 +967,161 @@ document.addEventListener('DOMContentLoaded', function() {
                             padding-right: 0px;
                         }
                     }
+
+                    
+
+    .ivory-rec, .blk-rec, .lavender-rec {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+    }
+
+            
+
+                    .ivory-rec{
+                        width: 100%; height: 100%; object-fit: contain;
+                    }
+                    .blk-rec{
+                        width: 100%; height: auto; object-fit: contain;
+                    }
+                    .lavender-rec{
+                        width: 100%; height: auto; object-fit: contain;
+                    }
+
+                    @media (max-width: 480px) {
+                        
+                        .lavender-rec{
+                            width: 24% !important;
+                            height: 50% !important;
+                        }
+                        .blk-rec{
+                            width: 24% !important;
+                            height: 50% !important;
+                        }
+                        .ivory-rec{
+                            width: 24% !important;
+                            height: 50% !important;
+                        }
+                    }
+
+
+                    .head-text{
+                        font-size: 18px;
+                        color: #8B8B8B; 
+                        font-weight: 400;
+                    }
+                    .body-text{
+                        font-size: 17px;
+                        color: black; font-weight: 400; font-size: 17px;
+                    }
+
+                    @media (max-width: 480px) {
+                        .head-text, .body-text{
+                            font-size: 14px;
+                        }
+                    }
+
+
+                    .box-three-container{
+                        display: flex; 
+                        flex-direction: row; 
+                        gap: 350px; 
+                        
+                    }
+
+
+                    
+
                 </style>
-                <div class="box three" style="padding: 10px; ">
+                <div class="box three" style="padding: 10px; "> 
                     <div style="" class="box-three">
-                        <div style="display: flex; flex-direction: row; gap: 350px; ">
-                            <div style="display: flex; flex-direction: row; gap: 20px; ">
-                                <img src="/Assets/ivoryrec.png" alt="Paltter"
-                                    style="width: 100%; height: auto; object-fit: contain;" />
+                        <div class="box-three-container">
+                            <div class="ivory-rec-container" style=" display: flex; flex-direction: row; gap: 20px;  ">
+                                <img class="ivory-rec" src="/Assets/ivoryrec.png" alt="Paltter"
+                                    />
                                 <div style="display: flex; flex-direction: column; gap: 15px; ">
                                     <div style="display: flex; flex-direction: column; gap: 10px; ">
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text" ">
                                             Hex
                                         </span>
-                                        <span style="color: black; font-weight: 400; font-size: 17px;">
+                                        
+                                        <span class="body-text" style="">
                                             #FDFBD9
                                         </span>
                                     </div>
                                     <div>
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text" >
                                             RGB
                                         </span>
+                                        <br />
                                         <span
-                                            style="color: black; font-weight: 400; font-size: 17px; white-space: nowrap;">
+                                        class="body-text"
+                                          >
                                             253,251,217
                                         </span>
                                     </div>
                                     <div>
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text" >
                                             HSL
                                         </span>
+                                        <br />
                                         <span
-                                            style="color: black; font-weight: 400; font-size: 17px; display: flex; flex-direction: row; gap: 10px; white-space: nowrap; ">
+                                             class="body-text">
                                             56°, 87%, 92%
                                         </span>
                                     </div>
                                     <div>
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
-                                            CYMK
+                                        <span class="head-text" >
+                                            CYMK 
                                         </span>
+                                        <br />
                                         <span
-                                            style="color: black; font-weight: 400; font-size: 17px;  white-space: nowrap;">
+                                          class="body-text">
 
                                             0%, 0.8%, 14.2%, 0.8%
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <div style="display: flex; flex-direction: row; gap: 20px; ">
-                                <img src="/Assets/blkrec.png" alt="Paltter"
-                                    style="width: 100%; height: auto; object-fit: contain;" />
+                            <div class="blk-rec-container" style="display: flex; flex-direction: row; gap: 20px; ">
+                                <img class="blk-rec" src="/Assets/blkrec.png" alt="Paltter"
+                                    />
                                 <div style="display: flex; flex-direction: column; gap: 20px; ">
                                     <div style="display: flex; flex-direction: column; gap: 10px; ">
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text" >
                                             Hex
                                         </span>
-                                        <span style="color: black; font-weight: 400; font-size: 17px;">
+                                        <span  class="body-text">
                                             #1A1619
                                         </span>
                                     </div>
                                     <div>
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text">
                                             RGB
                                         </span>
+                                        <br />
                                         <span
-                                            style="color: black; font-weight: 400; font-size: 17px; white-space: nowrap;">
+                                          class="body-text">
                                             26, 22, 25
                                         </span>
                                     </div>
                                     <div>
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text">
                                             HSL
                                         </span>
+                                        <br />
                                         <span
-                                            style="color: black; font-weight: 400; font-size: 17px; display: flex; flex-direction: row; gap: 10px; white-space: nowrap; ">
+                                            class="body-text">
                                             310°, 8%, 9%
                                         </span>
                                     </div>
                                     <div>
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text">
                                             CYMK
                                         </span>
+                                        <br />
                                         <span
-                                            style="color: black; font-weight: 400; font-size: 17px;  white-space: nowrap;">
+                                           class="body-text">
 
                                             0%, 15.4%, 3.8%, 89.8%
                                         </span>
@@ -1022,42 +1133,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         </div>
                         <div>
-                            <div style="display: flex; flex-direction: row; gap: 20px; ">
-                                <img src="/Assets/lavenderrec.png" alt="Paltter"
-                                    style="width: 100%; height: auto; object-fit: contain;" />
+                            <div class="lavander-container" style="display: flex; flex-direction: row; gap: 20px; ">
+                                <img class="lavender-rec" src="/Assets/lavenderrec.png" alt="Paltter"
+                                    />
                                 <div style="display: flex; flex-direction: column; gap: 20px; ">
                                     <div style="display: flex; flex-direction: column; gap: 10px; ">
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text">
                                             Hex
                                         </span>
-                                        <span style="color: black; font-weight: 400; font-size: 17px;">
+                                        <span class="body-text">
                                             #FAF6F9
                                         </span>
                                     </div>
                                     <div>
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text">
                                             RGB
                                         </span>
+                                        <br />
                                         <span
-                                            style="color: black; font-weight: 400; font-size: 17px; white-space: nowrap;">
+                                           class="body-text">
                                             250, 246, 249
                                         </span>
                                     </div>
                                     <div>
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text">
                                             HSL
                                         </span>
+                                        <br />
                                         <span
-                                            style="color: black; font-weight: 400; font-size: 17px; display: flex; flex-direction: row; gap: 10px; white-space: nowrap; ">
+                                     class="body-text">
                                             320°, 33%, 97%
                                         </span>
                                     </div>
                                     <div>
-                                        <span style="color: #8B8B8B; font-weight: 400; font-size: 17px;">
+                                        <span class="head-text">
                                             CYMK
                                         </span>
+                                        <br />
                                         <span
-                                            style="color: black; font-weight: 400; font-size: 17px;  white-space: nowrap;">
+                                            class="body-text">
 
                                             0%, 1.6%, 0.4%, 2%
                                         </span>
@@ -1067,18 +1181,106 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                 </div>
+                <style>
+
+                    @media (max-width: 480px) {
+                        .blk-rec-container{
+                            position: absolute;
+                            top: 3%;
+                            left: 10%;
+                        }
+
+                    }
+                    .ivory-rec-container, .blk-rec-container, .lavander-container{
+                        width: 450px; height: 100%; 
+                    }
+
+                    .ivory-rec, .blk-rec, .lavender-rec{
+                        width:200px !important;
+                    }
+
+                    @media (max-width: 480px) {
+                        .ivory-rec-container{
+                            position: absolute;
+                            top: 32%;
+                            left: 10%;
+                        }
+                    }
+
+
+
+                   @media (max-width: 480px) {
+                    .lavander-container{
+                        position: absolute;
+                        top: 60%;
+                        left: 10%;
+                        
+                    }
+                   }
+                 .Image1{
+                        width: 700px; height:500px; object-fit: cover;
+                    }
+                    .Image2{
+                        width: 700px; height:500px; object-fit: cover; margin-right: 100px;
+                    }
+                    @media (max-width: 768px) {
+                        .Image1, .Image2 {
+                            width: 200px;
+                            height: 200px;
+                        }
+                    }   
+
+                    @media (max-width: 480px) {
+                        .Image1, .Image2 {
+                            width: 200px !important;
+                            height: 200px !important;
+                        }
+
+                        /* Default (Desktop) - Row Layout */
+.box-four-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Mobile - Column Layout */
+@media (max-width: 480px) {
+    .box-four-container {
+    display: flex;
+    width: 100%;
+
+    }
+    
+    /* Optional: Adjust image sizes for mobile */
+    .box-four-container img {
+        max-width: 100%; /* Ensures images don't overflow */
+        height: 300px;    /* Maintains aspect ratio */
+    }
+}
+                    }
+                </style>
                 <div class="box four">
-                    <div
+                    <div class="box-four-container"
                         style="display: flex; flex-direction: row; gap:10px; padding: 0px; width: 100%; height: 100%;    ">
-                        <img src="/Assets/lightspeed poster 2.png" alt="Paltter"
-                            style="width: 700px; height:500px; object-fit: cover;" />
-                        <img src="/Assets/lightspeed mockips2 1.png" alt="Paltter"
-                            style="width: 700px; height:500px; object-fit: cover;  margin-right: 100px;" />
+                        <img class="Image1" src="/Assets/lightspeed poster 2.png" alt="Paltter" />
+                        <img class="Image2" src="/Assets/lightspeed mockips2 1.png" alt="Paltter"
+                            />
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <style>
+        @media (max-width: 480px) {
+            .box-four-container {
+                
+            }
+        }
+    </style>
  <section class="caara" id="caara">
         <div style="position: relative; ">
             <img src="/Assets/caara loggo 1 (1).png" alt="Car" style="width: 100%; height: 100%; object-fit: cover; ">
@@ -1371,8 +1573,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         @media (max-width:480px) {
             .box-three{
-                width: 70vw;
-                height: 100vh;
+                width: 100vw;
+                height: 60vh !important;
+          
             }
         }
         .box.four {
