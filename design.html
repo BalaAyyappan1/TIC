@@ -717,7 +717,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Get references to all sections and cursors
   const sliderSection = document.querySelector('.slider-section');
-  const horizontalSection = document.querySelector('.horizontal-section');
+//   const horizontalSection = document.querySelector('.horizontal-section');
   const caaraSection = document.querySelector('.caara');
   const attarSection = document.querySelector('.Attar-Bazaar'); 
   const dogSection = document.querySelector('.dog-section');
@@ -729,9 +729,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const cursorPointerDog = document.querySelector('.cursor-pointer-dog');
   const cursorPointerAmae = document.querySelector('.cursor-pointer-amae');
   // Clone cursors for horizontal section
-  const horizontalCursorPointerBlack = cursorPointerBlack.cloneNode(true);
-  horizontalCursorPointerBlack.classList.add('horizontal-cursor-pointer-black');
-  horizontalSection.appendChild(horizontalCursorPointerBlack);
+//   const horizontalCursorPointerBlack = cursorPointerBlack.cloneNode(true);
+//   horizontalCursorPointerBlack.classList.add('horizontal-cursor-pointer-black');
+//   horizontalSection.appendChild(horizontalCursorPointerBlack);
 
   // Store original positions
   const sliderOriginalPosition = {
@@ -773,7 +773,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize all cursors
   initCursor(cursorPointer, sliderOriginalPosition.top, sliderOriginalPosition.right, 'translateX(2%)');
   initCursor(cursorPointerBlack, sliderOriginalPosition.top, sliderOriginalPosition.right, 'translateX(2%)');
-  initCursor(horizontalCursorPointerBlack, '30%', '24%', 'translateX(2%)');
+//   initCursor(horizontalCursorPointerBlack, '30%', '24%', 'translateX(2%)');
   initCursor(cursorPointerCaara, caaraOriginalPosition.top, caaraOriginalPosition.left, 'translateX(2%)');
   initCursor(cursorPointerAb, abOriginalPosition.top, abOriginalPosition.left, 'translateX(2%)');
   initCursor(cursorPointerDog, dogOriginalPosition.top, dogOriginalPosition.left, 'translateX(2%)');
@@ -792,7 +792,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Set up click handlers
   cursorPointer.addEventListener('click', () => openPdfInNewTab('/Assets/slider-section.pdf'));
-  horizontalCursorPointerBlack.addEventListener('click', () => openPdfInNewTab('/Assets/brandbook.pdf'));
+//   horizontalCursorPointerBlack.addEventListener('click', () => openPdfInNewTab('/Assets/brandbook.pdf'));
   cursorPointerCaara.addEventListener('click', () => openPdfInNewTab('/Assets/caara blue.pdf'));
   cursorPointerAb.addEventListener('click', () => openPdfInNewTab('/Assets/AMAE - BRAND BOOK.pdf'));
   cursorPointerDog.addEventListener('click', () => openPdfInNewTab('/Assets/berky-paws-brandbook.pdf'));
@@ -800,7 +800,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Track mouse position in sections using objects to maintain reference
   const sectionStates = {
     isInSliderSection: false,
-    isInHorizontalSection: false,
+    // isInHorizontalSection: false,
     isInCaaraSection: false,
     isInAttarBazaarSection: false,
     isInDogSection: false
@@ -834,7 +834,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Set up event listeners for all sections
   handleSectionEvents(sliderSection, cursorPointer, 'isInSliderSection');
-  handleSectionEvents(horizontalSection, horizontalCursorPointerBlack, 'isInHorizontalSection');
+//   handleSectionEvents(horizontalSection, horizontalCursorPointerBlack, 'isInHorizontalSection');
   handleSectionEvents(caaraSection, cursorPointerCaara, 'isInCaaraSection');
   handleSectionEvents(attarSection, cursorPointerAb, 'isInAttarBazaarSection'); // Fixed section reference
   handleSectionEvents(dogSection, cursorPointerDog, 'isInDogSection');
@@ -858,17 +858,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
         }   
     </style> -->
-   
-    <section class="horizontal-section " id="custom-cursor-section">
-        <div class="pin-spacer">
+
+    <style></style>
+
+
+    
+    <section class="horizontal-section" id="custom-cursor-section">
+        <div class="pin-spacer" style="background-color:white;">
             <div class="horizontal-container">
-                <div class="box one" style="width: 100%; height: 100%;">
-                    <div style="width: 100%; height: 100%;">
+                <div class="box one" style="width: 100%;;">
+                    <div style="width: 100%; height: 100%; object-fit: contain;">
                         <img src="/Assets/Untitled design (20) 1.png" alt="Slider Image 1"
                             style="width: 70%; height: 70%; object-fit: cover; position:relative;">
-
-
-
 
                         <div class="topText"
                             style="position: absolute; top: 10%; right: 5%; width: 529px; color: black; text-align: start; font-size: 20px; letter-spacing: -1.12px; line-height: 24px; font-weight: 400;">
@@ -882,12 +883,73 @@ document.addEventListener('DOMContentLoaded', function() {
                             brand's long-term intentions with developing the crypto space. The main focus of the logo is
                             the icon and it's use should reflect this.
                         </div>  
-                        <div class="cursor-pointer-black" style="position: absolute; top: 10%; left: 5%; color:black; width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center; cursor: pointer;" onclick="openPDF('/Assets/lightspeed-brandbook.pdf', 'Lightspeed')">
+                        <button 
+  class="viewBook" 
+  onclick="window.open('/Assets/brandbook.pdf', '_blank')" 
+  style="
+    border: 1px solid #000;
+    background-color: transparent;
+    color: #000;
+    font-size: 1.125rem; /* 18px (better for responsiveness) */
+    letter-spacing: -0.5px;
+    line-height: 1.5;
+    font-weight: 400;
+   
+    padding: 12px 24px;
+    border-radius: 24px; /* subtle rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease; /* smooth hover effect */
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* spacing between icon & text (if added) */
+"
+
+>
+  View Brandbook
+</button>
+                        <div class="cursor-pointer-black newcuosr" style="position: absolute; top: 10%; left: 5%; color:black; width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center; cursor: pointer;" onclick="openPDF('/Assets/lightspeed-brandbook.pdf', 'Lightspeed')">
                             <img src="/Assets/cursor-black.svg" alt="Brandbook" style="color:black;">
                             <span style="padding-left: 20px; color:black;">Click to view brandbook</span>
                         </div>
+                        <div class="brandbook-text"                       onclick="window.open('/Assets/brandbook.pdf', '_blank')"  >
+                            <!-- <img src="/Assets/cursor-black.svg" alt="Brandbook" style="color:black;"> -->
+                            <span style="padding-left: 20px; color: black; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);">
+                                Click to view brandbook
+                            </span>
+                        </div>
                     </div>
                 </div>
+
+                <style>
+                    @media (max-width: 480px) {
+                    .viewBook{
+                        position: absolute; bottom: 1%; left: 30%; color:black; color: black; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center; cursor: pointer; z-index: 1000;
+                        
+                    }
+                }
+
+                @media (max-width:1400px) {
+                    .brandbook-text{
+                        display: none;
+                    }
+                }
+                    .brandbook-text{
+                        position: absolute; top: 24%; left: 25%; color:black; width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center; cursor: pointer;
+
+                   
+                    }
+                    @media (max-width: 480px) {
+                        .brandbook-text{
+                            display: none;
+                        }
+                    }
+                    @media (max-width: 720px) {
+                        .brandbook-text{
+                            display: none;
+                        }
+                    }
+                </style>
                 <div class="box two">
                     <div class="box-two-container" style="width:100%;  display: flex; flex-direction: column; ">
                         <img src="/Assets/Palette.svg" alt="Paltter" width="90%" class="palette-image"
@@ -971,7 +1033,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
 
     .ivory-rec, .blk-rec, .lavender-rec {
-        width: 100% !important;
+        width: 70% !important;
         height: 100% !important;
         object-fit: contain !important;
     }
@@ -991,15 +1053,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     @media (max-width: 480px) {
                         
                         .lavender-rec{
-                            width: 24% !important;
+                            width: 34% !important;
                             height: 50% !important;
                         }
                         .blk-rec{
-                            width: 24% !important;
+                            width: 34% !important;
                             height: 50% !important;
                         }
                         .ivory-rec{
-                            width: 24% !important;
+                            width: 34% !important;
                             height: 50% !important;
                         }
                     }
@@ -1017,7 +1079,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     @media (max-width: 480px) {
                         .head-text, .body-text{
-                            font-size: 14px;
+                            font-size: 13px;
                         }
                     }
 
@@ -1030,7 +1092,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
 
-                    
+                    .blk-rec-container-column, .lavender-rec-container-column, .ivory-rec-container-column{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                    }
+
+                    @media (max-width: 480px) {
+                        .blk-rec-container-column, .lavender-rec-container-column, .ivory-rec-container-column{
+                            margin-top:100px;
+                            gap: 4px;
+                        }
+                    }
 
                 </style>
                 <div class="box three" style="padding: 10px; "> 
@@ -1039,8 +1112,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="ivory-rec-container" style=" display: flex; flex-direction: row; gap: 20px;  ">
                                 <img class="ivory-rec" src="/Assets/ivoryrec.png" alt="Paltter"
                                     />
-                                <div style="display: flex; flex-direction: column; gap: 15px; ">
-                                    <div style="display: flex; flex-direction: column; gap: 10px; ">
+                                <div class="ivory-rec-container-column ">
+                                    <div style="display: flex; flex-direction: column;  ">
                                         <span class="head-text" ">
                                             Hex
                                         </span>
@@ -1086,8 +1159,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="blk-rec-container" style="display: flex; flex-direction: row; gap: 20px; ">
                                 <img class="blk-rec" src="/Assets/blkrec.png" alt="Paltter"
                                     />
-                                <div style="display: flex; flex-direction: column; gap: 20px; ">
-                                    <div style="display: flex; flex-direction: column; gap: 10px; ">
+                                <div class="blk-rec-container-column ">
+                                    <div style="display: flex; flex-direction: column; ">
                                         <span class="head-text" >
                                             Hex
                                         </span>
@@ -1136,8 +1209,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="lavander-container" style="display: flex; flex-direction: row; gap: 20px; ">
                                 <img class="lavender-rec" src="/Assets/lavenderrec.png" alt="Paltter"
                                     />
-                                <div style="display: flex; flex-direction: column; gap: 20px; ">
-                                    <div style="display: flex; flex-direction: column; gap: 10px; ">
+                                <div class="lavender-rec-container-column">
+                                    <div style="display: flex; flex-direction: column;  ">
                                         <span class="head-text">
                                             Hex
                                         </span>
@@ -1186,7 +1259,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     @media (max-width: 480px) {
                         .blk-rec-container{
                             position: absolute;
-                            top: 3%;
+                            top: -3%;
                             left: 10%;
                         }
 
@@ -1200,9 +1273,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     @media (max-width: 480px) {
+                         .ivory-rec, .blk-rec, .lavender-rec{
+                        width:100px !important;
+                    }
+                    }
+
+                    @media (max-width: 480px) {
                         .ivory-rec-container{
                             position: absolute;
-                            top: 32%;
+                            top: 38%;
+                            gap: 10px;
                             left: 10%;
                         }
                     }
@@ -1212,7 +1292,7 @@ document.addEventListener('DOMContentLoaded', function() {
                    @media (max-width: 480px) {
                     .lavander-container{
                         position: absolute;
-                        top: 60%;
+                        top: 80%;
                         left: 10%;
                         
                     }
@@ -1337,6 +1417,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     </style>
+
 <section class="Attar-Bazaar" style="position: relative;">
     <img src="/Assets/Box Mockup 1 1.png" alt="Attar Bazaar" style="width: 100%; height: 100%; object-fit: cover; ">
     <div class="cursor-pointer-ab" style="position: absolute; top: 30%; left: 24%;  width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center;">
@@ -1346,14 +1427,31 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </section>
 
+<style>
 
-<section class="berky-paws" style="position: relative; height: 100vh; width: 100vw;  background-color: #4111D5;">
+    .berky-paws{
+        position: relative; height: 100vh; width: 100vw;  background-color: #4111D5;
+    }
+    @media (max-width: 480px) {
+        .berky-paws {
+            height: 80vh;
+        }
+
+        .berky-paws-text{
+           display: none;
+        }
+    }
+
+
+</style>
+
+<section class="berky-paws" >
     
     <div class="berky-paws-logo" style="position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255, 255, 255, 0.3); font-size: 18px; line-height: 24px; font-weight: 400; text-align: center;">
         <img src="/Assets/berkypawsLogo.svg" alt="Attar Bazaar" >
     </div>
 
-    <div style="position: absolute; bottom: 0; width: 100%; padding-left: 10%; padding-right: 10%; left: 50%; transform: translate(-50%, -50%); color: rgba(255, 255, 255, 0.3); font-size: 18px; line-height: 24px; font-weight: 400; text-align: center; color: #F5F5F5;">
+    <div class="berky-paws-text" style="position: absolute; bottom: 0; width: 100%; padding-left: 10%; padding-right: 10%; left: 50%; transform: translate(-50%, -50%); color: rgba(255, 255, 255, 0.3); font-size: 18px; line-height: 24px; font-weight: 400; text-align: center; color: #F5F5F5;">
         We built this logo & Packaging to make sure Playful Paws Meet Purrfect Products. We use vibrant purple (#6d00c2) and tangy orange (#ffb552) for our primary colors, playfully contrasted by a lineup of cool and techy tones that make up our supporting colors. 
     </div>
 </section>
@@ -1361,8 +1459,8 @@ document.addEventListener('DOMContentLoaded', function() {
     <img src="/Assets/dog.png" style="width: 100%; object-fit: cover; " />
     <div class="cursor-pointer-dog" style="position: absolute; top: 30%; left: 24%;  width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center;">
         <img src="/Assets/cursor.svg" alt="Brandbook" >
-        <span style="padding-left: 20px;">  Click to view brandbook </span>
-      
+        <span style="padding-left: 20px;">Click to view brandbook </span>
+    
     </div>
 </section>
 <style>
@@ -1383,7 +1481,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 </style>
 
-  
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Add event listeners for the new sections
@@ -1521,10 +1618,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .horizontal-section {
             position: relative;
             width: 100%;
-            height: 100vh;
             overflow: hidden;
         }
 
+        @media (max-width: 480px) {
+            .horizontal-section, .pin-spacer {
+                height: 100vh;
+            }
+        }
 
 
         .horizontal-container {
@@ -1533,9 +1634,15 @@ document.addEventListener('DOMContentLoaded', function() {
             will-change: transform;
         }
 
+        @media (max-width: 480px) {
+            .horizontal-container {
+                background-color:white;
+                height: 80vh;
+            }
+        }
+        
         .box.one {
             width: 100vw;
-            height: 100vh;
             flex-shrink: 0;
             position: relative;
             display: flex;
@@ -1545,7 +1652,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .box.two {
             width: 100vw;
-            height: 100vh;
             flex-shrink: 0;
             position: relative;
             display: flex;
@@ -1556,13 +1662,14 @@ document.addEventListener('DOMContentLoaded', function() {
         @media (max-width:480px) {
             .box-two{
                 width: 100vw;
-                height: 100vh;
+                height: 100vh !important;
+             
             }
         }
 
         .box.three {
             width: 100vw;
-            height: 100vh;
+
             flex-shrink: 0;
             position: relative;
             display: flex;
@@ -1580,7 +1687,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         .box.four {
             width: 100vw;
-            height: 100vh;
             flex-shrink: 0;
             position: relative;
             display: flex;
