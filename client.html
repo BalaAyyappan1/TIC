@@ -440,50 +440,139 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <section style="
         position: absolute;
-        bottom: 18%;
+        bottom: 25%;
+        width: 100%;
         display: flex;
         align-items: center;
-
         background-color: #000;
-        overflow: hidden; /* Hide scrollbar */
+        overflow: hidden;
         position: relative;
       ">
+        <!-- Left fade gradient -->
+        <div style="
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100px;
+          background: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+          z-index: 2;
+          pointer-events: none;
+        "></div>
+        
+        <!-- Right fade gradient -->
+        <div style="
+          position: absolute;
+          right: 0;
+          top: 0;
+          height: 100%;
+          width: 100px;
+          background: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+          z-index: 2;
+          pointer-events: none;
+        "></div>
+      
         <!-- Wrapper for infinite scroll -->
-        <div class="scrolling-wrapper" style=" 
-           
+        <div class="scrolling-wrapper" style="
           display: flex;
+          align-items: center;
           animation: scroll 30s linear infinite;
           white-space: nowrap;
+          padding: 20px 0;
         ">
           <!-- Logos (repeated twice for seamless looping) -->
-          <img src="/Assets/clients/1 (1) 1.png" alt="Client 1" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Adinn Logo-01 2.png" alt="Client 2" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Asset 1 2.png" alt="Client 3" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Asset 1@4x 3.png" alt="Client 4" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Enclave.png" alt="Client 5" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/image 1.png" alt="Client 6" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/image 46 (Traced).png" alt="Client 7" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Innovative Final Logo (1) 1 (1).png" alt="Client 8" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Layer 1.png" alt="Client 9" style="max-width: 200px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/logo 1.png" alt="Client 10" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/logo.png" alt="Client 11" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Uniconnect Logo HRe 1.png" alt="Client 12" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/VOLS 3.png" alt="Client 13" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/1 (1) 1.png" alt="Client 1" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Adinn Logo-01 2.png" alt="Client 2" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Asset 1 2.png" alt="Client 3" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Asset 1@4x 3.png" alt="Client 4" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Group 15.png" alt="Client 5" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/image 1.png" alt="Client 6" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Innovative Final Logo (1) 1 (1).png" alt="Client 8" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Layer 1.png" alt="Client 9" style="max-width: 150px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/logo 1.png" alt="Client 10" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/logo.png" alt="Client 11" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Uniconnect Logo HRe 1.png" alt="Client 12" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/VOLS 3.png" alt="Client 13" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/ri 1.png" alt="Client 14" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/white_logo 1.png" alt="Client 15" style="max-width: 200px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Zapp 1.png" alt="Client 16" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
           
           <!-- Duplicate logos for seamless looping -->
-          <img src="/Assets/clients/1 (1) 1.png" alt="Client 1" style="max-width: 100px; height: 100px; object-fit: contain;  margin: 0 50px;">
-          <img src="/Assets/clients/Adinn Logo-01 2.png" alt="Client 2" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Asset 1 2.png" alt="Client 3" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Asset 1@4x 3.png" alt="Client 4" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Enclave.png" alt="Client 5" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/image 1.png" alt="Client 6" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/image 46 (Traced).png" alt="Client 7" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Innovative Final Logo (1) 1 (1).png" alt="Client 8" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Layer 1.png" alt="Client 9" style="max-width: 200px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/logo 1.png" alt="Client 10" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/logo.png" alt="Client 11" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/Uniconnect Logo HRe 1.png" alt="Client 12" style="max-width: 100px; height: 100px; object-fit: contain; margin: 0 50px;">
-          <img src="/Assets/clients/VOLS 3.png" alt="Client 13" style="max-width: 100px; height: 100px; margin: 0 50px;">
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/1 (1) 1.png" alt="Client 1" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Adinn Logo-01 2.png" alt="Client 2" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Asset 1 2.png" alt="Client 3" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Asset 1@4x 3.png" alt="Client 4" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Group 15.png" alt="Client 5" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/image 1.png" alt="Client 6" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Innovative Final Logo (1) 1 (1).png" alt="Client 8" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Layer 1.png" alt="Client 9" style="max-width: 150px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/logo 1.png" alt="Client 10" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/logo.png" alt="Client 11" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Uniconnect Logo HRe 1.png" alt="Client 12" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/VOLS 3.png" alt="Client 13" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/ri 1.png" alt="Client 14" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/white_logo 1.png" alt="Client 15" style="max-width: 200px; max-height: 60px; object-fit: contain;">
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 200px; flex-shrink: 0;">
+            <img src="/Assets/clients/Zapp 1.png" alt="Client 16" style="max-width: 100px; max-height: 60px; object-fit: contain;">
+          </div>
         </div>
       </section>
       
