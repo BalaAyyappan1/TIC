@@ -1,0 +1,1433 @@
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    section {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Mobile specific overrides */
+    body.mobile-view {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+        position: static !important;
+        display: block !important;
+    }
+    
+    body.mobile-view .horizontal-section {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        position: static !important;
+        transform: none !important;
+        display: block !important;
+        overflow: visible !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    body.mobile-view .pin-spacer {
+        height: auto !important;
+        max-height: none !important;
+        min-height: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        position: static !important;
+        transform: none !important;
+        inset: auto !important;
+        width: 100% !important;
+        display: block !important;
+        margin: 0 !important;
+    }
+    
+    body.mobile-view .horizontal-container {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        transform: none !important;
+        position: static !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    body.mobile-view .box {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        padding: 20px 0 !important;
+        position: static !important;
+        transform: none !important;
+        display: block !important;
+        margin: 0 !important;
+    }
+    
+    body.mobile-view .box > div {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        transform: none !important;
+        position: static !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .horizontal-section {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        height: auto;
+    }
+
+    @media (max-width: 480px) {
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .horizontal-section {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            border-bottom: 0 !important;
+        }
+        
+        /* This is critical - ensures mobile container attaches to next content */
+        .mobile-container {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        
+        /* Add this to specifically target any content after the horizontal section */
+        .horizontal-section + * {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        
+        .horizontal-section, .pin-spacer {
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            width: 100% !important;
+            overflow: visible !important;
+            transform: none !important;
+            position: static !important;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+        }
+        
+        /* Force hide top and bottom text on mobile */
+        .topText, .bottomText {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            position: absolute !important;
+            z-index: -999 !important;
+        }
+    }
+
+
+    .horizontal-container {
+        display: flex;
+        height: 100vh;
+        will-change: transform;
+        width: 400%;  /* 4 sections at 100% each */
+    }
+
+    @media (max-width: 768px) {
+        .horizontal-container {
+            width: 400%;  /* Keep 4 sections at 100% each */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .horizontal-container {
+            background-color: white;
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            width: 100% !important;  /* Ensure width fits within viewport */
+            flex-direction: column !important;
+            transform: none !important;
+            position: static !important;
+            will-change: auto !important;
+            display: block !important;
+        }
+    }
+    
+    .box.one {
+        width: 100vw;
+        flex-shrink: 0;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (max-width: 480px) {
+        .box.one {
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            width: 100% !important;
+            padding: 20px 0 !important;
+            position: static !important;
+            transform: none !important;
+            display: block !important;
+        }
+        
+        .box.one > div {
+            height: auto !important;
+            min-height: 0 !important;
+            width: 100% !important;
+            padding: 0 !important;
+        }
+        
+        .box.one img {
+            width: 60% !important;
+            height: auto !important;
+            margin: 10px auto !important;
+            display: block !important;
+        }
+    }
+
+    .box.two {
+        width: 100vw;
+        flex-shrink: 0;
+        position: relative;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    @media (max-width:480px) {
+        .box.two {
+            width: 100% !important;
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            justify-content: center !important;
+            padding: 20px 0 !important;
+            position: static !important;
+            transform: none !important;
+            display: block !important;
+        }
+    }
+
+    .box.three {
+        width: 100vw;
+        flex-shrink: 0;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    @media (max-width:480px) {
+        .box.three {
+            width: 100% !important;
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            padding: 20px 0 !important;
+            position: static !important;
+            transform: none !important;
+            display: block !important;
+        }
+    }
+    .box.four {
+        width: 100vw;
+        flex-shrink: 0;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (max-width:480px) {
+        .box.four {
+            width: 100% !important;
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            padding: 20px 0 !important;
+            position: static !important;
+            transform: none !important;
+            display: block !important;
+        }
+    }
+
+    .box>div {
+        width: 100px;
+        height: 100px;
+
+        color: #FFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .one {
+        background-color: #FFFFFF;
+    }
+
+    .two {
+        background-color: #FFFFFF;
+    }
+
+    .three {
+        background-color: #FFFFFF;
+    }
+
+    .four {
+        background-color: #FFFFFF;
+    }
+
+    @media (max-width: 480px) {
+        /* Global image adjustments for mobile */
+        img {
+            max-width: 90% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        
+        /* Image size adjustments for specific sections */
+        .box.one img {
+            width: 60% !important;
+            height: auto !important;
+            margin: 10px auto !important;
+            display: block !important;
+        }
+        
+        .palette-image {
+            width: 90% !important;
+            max-width: 90vw !important;
+            height: auto !important;
+            margin: 10px auto !important;
+        }
+        
+        .ivory-rec, .blk-rec, .lavender-rec {
+            width: 80px !important;
+            height: auto !important;
+            margin: 0 !important;
+        }
+        
+        .Image1, .Image2 {
+            width: 250px !important;
+            height: auto !important;
+            max-height: 250px !important;
+            margin: 10px auto !important;
+            object-fit: contain !important;
+        }
+        
+        /* Additional vertical spacing adjustment */
+        .box-three-container {
+            gap: 15px !important;
+        }
+        
+        .box-four-container {
+            gap: 15px !important;
+        }
+    }
+
+    /* Critical mobile view fixes */
+    html.mobile-view, body.mobile-view {
+        height: auto !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        position: static !important;
+    }
+    
+    @media (max-width: 480px) {
+        .pin-spacer, .pin-spacer > div {
+            height: auto !important;
+            max-height: none !important;
+            min-height: 0 !important;
+            position: static !important;
+            transform: none !important;
+            padding: 0 !important;
+            top: auto !important;
+            left: auto !important;
+            overflow: visible !important;
+            inset: auto !important;
+        }
+        
+        .horizontal-section, .horizontal-container {
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            position: static !important;
+            transform: none !important;
+            display: block !important;
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        
+        .box {
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            width: 100% !important;
+            position: static !important;
+            transform: none !important;
+            display: block !important;
+            padding: 10px 0 !important;
+            margin: 0 !important;
+        }
+        
+        .box > div {
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            width: 100% !important;
+            position: static !important;
+            transform: none !important;
+        }
+        
+        /* Reduce image sizes */
+        .box.one img {
+            height: auto !important;
+            max-height: 150px !important;
+            width: auto !important;
+            max-width: 70% !important;
+        }
+        
+        .palette-image {
+            height: auto !important;
+            max-height: 100px !important;
+            width: auto !important;
+            max-width: 90% !important;
+        }
+        
+        .ivory-rec, .blk-rec, .lavender-rec {
+            width: 60px !important;
+            height: auto !important;
+        }
+        
+        .Image1, .Image2 {
+            height: auto !important;
+            max-height: 150px !important;
+            width: auto !important;
+            max-width: 90% !important;
+            margin: 10px auto !important;
+        }
+        
+        /* Adjust spacing */
+        .box-three-container, .box-two-container {
+            gap: 10px !important;
+        }
+        
+        /* Force box layout */
+        .box-four-container, .box-three-container {
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
+    }
+
+    /* Pin Spacer Override - universal fix */
+    @media (max-width: 480px) {
+        /* Global pin-spacer fix regardless of other classes */
+        .pin-spacer {
+            height: auto !important;
+            max-height: none !important;
+            min-height: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            position: static !important;
+            transform: none !important;
+            inset: auto !important;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            width: 100% !important;
+            display: block !important;
+        }
+        
+        /* Direct child of pin-spacer fix */
+        .pin-spacer > div {
+            height: auto !important;
+            max-height: none !important;
+            min-height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            position: static !important;
+            transform: none !important;
+            inset: auto !important;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            width: 100% !important;
+            display: block !important;
+        }
+    }
+
+    /* Fix for the section following the horizontal section */
+    #custom-cursor-section {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    #custom-cursor-section + * {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    
+    /* Additional mobile-specific fixes */
+    @media (max-width: 480px) {
+        #custom-cursor-section {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            border-bottom: none !important;
+        }
+        
+        #custom-cursor-section + * {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            border-top: none !important;
+        }
+        
+        /* Target the horizontal section container's parent */
+        #custom-cursor-section > .pin-spacer,
+        #custom-cursor-section > .mobile-container {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        
+        /* Last box in horizontal section */
+        .box.four {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        /* Fix for images in box four on mobile */
+        .box.four .box-four-container {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 20px !important;
+            padding: 20px 0 !important;
+        }
+        
+        .box.four .Image1, 
+        .box.four .Image2 {
+            width: 250px !important;
+            height: 250px !important;
+            margin: 0 auto !important;
+            display: block !important;
+            object-fit: cover !important;
+        }
+    }
+</style>
+    <section class="horizontal-section" id="custom-cursor-section">
+        <div class="pin-spacer" style="background-color:white;">
+            <div class="horizontal-container">
+                <div class="box one" style="width: 100%;;">
+                    <div style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="/Assets/Untitled design (20) 1.png" alt="Slider Image 1"
+                            style="width: 70%; height: 70%; object-fit: cover; position:relative;">
+
+                        <div class="topText hide-on-mobile">
+                            The primary font used for heading is "Robodron". This remains consistent with the crypto
+                            space being decentralized and playing on it's clarity.
+                        </div>
+
+                        <div class="bottomText hide-on-mobile">
+                            The main logo consists of a icon and wordmark. The wordmark is minimal but reflective of the
+                            brand's long-term intentions with developing the crypto space. The main focus of the logo is
+                            the icon and it's use should reflect this.
+                        </div>  
+                        <button class="viewBook" onclick="window.open('/Assets/brandbook.pdf', '_blank')">
+  View Brandbook
+</button>
+
+                        <div class="brandbook-text"  onclick="window.open('/Assets/brandbook.pdf', '_blank')"  >
+                            <!-- <img src="/Assets/cursor-black.svg" alt="Brandbook" style="color:black;"> -->
+                            <span style="padding-left: 20px; color: black; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);">
+                                Click to view brandbook
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    /* Hide viewBook button on desktop, show only on mobile */
+                    .viewBook {
+                        display: none !important; /* Hide by default */
+                        border: 1px solid #000;
+                        background-color: transparent;
+                        color: #000;
+                        font-size: 1.125rem;
+                        letter-spacing: -0.5px;
+                        line-height: 1.5;
+                        font-weight: 400;
+                        padding: 12px 24px;
+                        border-radius: 24px;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        text-align: center;
+                        align-items: center;
+                        gap: 8px;
+                        position: absolute;
+                        bottom: 10%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        z-index: 1000;
+                    }
+                    
+                    /* Global mobile styles */
+                    @media (max-width: 480px) {
+                        /* Show button on mobile */
+                        .viewBook {
+                            display: inline-flex !important;
+                        }
+
+                        /* Hide text on mobile */
+                        .hide-on-mobile,
+                        .topText, 
+                        .bottomText {
+                            display: none !important;
+                            width: 0 !important;
+                            height: 0 !important;
+                            overflow: hidden !important;
+                            opacity: 0 !important;
+                            visibility: hidden !important;
+                            position: absolute !important;
+                            pointer-events: none !important;
+                        }   
+                    }
+
+                /* Add specific classes for the box one text elements to increase specificity */
+                .box.one .topText, .box.one .bottomText {
+                    position: absolute;
+                    color: black;
+                    text-align: start;
+                    font-size: 20px;
+                    letter-spacing: -1.12px;
+                    line-height: 24px;
+                    font-weight: 400;
+                    width: 529px;
+                }
+
+                .box.one .topText {
+                    top: 10%;
+                    right: 5%;
+                }
+
+                .box.one .bottomText {
+                    bottom: 10%;
+                    left: 5%;
+                }
+
+                @media (max-width:1400px) {
+                    .brandbook-text{
+                        display: none;
+                    }
+                }
+                    .brandbook-text{
+                        position: absolute; top: 24%; left: 25%; color:black; width: 1278px; color: white; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center; cursor: pointer;
+
+                   
+                    }
+                    @media (max-width: 480px) {
+                        .brandbook-text{
+                            display: none;
+                        }
+                    }
+                    @media (max-width: 720px) {
+                        .brandbook-text{
+                            display: none;
+                        }
+                    }
+                </style>
+                <div class="box two">
+                    <div class="box-two-container" style="width:100%;  display: flex; flex-direction: column; ">
+                        <img src="/Assets/Palette.svg" alt="Paltter" class="palette-image" />
+                        <div class="box-two-text" style=" ">
+                            Touching on the brand's concept of integrity and support Lightspeed Listing's color palette
+                            blends a vibrant and dimmed blue with greyscale for a simple yet effective palette which
+                            will be easy to utilize for the team.
+                        </div>
+                    </div>
+
+                </div>
+                <style>     
+
+                .palette-image{
+                    width: 80%;
+                    max-width: 1200px;
+                    height: auto;
+                    object-fit: contain;
+                    margin: 0 auto;
+                }
+
+                @media (max-width: 480px) {
+                    .palette-image{
+                        width: 90%;
+                        max-width: 90vw;
+                        height: auto;
+                        object-fit: contain;
+                        margin: 20px auto;
+                    }
+                }
+
+                @media (max-width: 320px) {
+                    .palette-image{
+                        width: 95%;
+                        max-width: 95vw;
+                    }
+                }
+
+                .box-two-container{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 50px;
+                }
+
+                @media (max-width: 480px) {
+                    .box-two-container{
+                        gap: 10px;
+                        width: 100vw;
+                        padding: 20px 0;
+                    }
+                }
+
+                    .box-two-text{
+                        font-size: 24px; 
+                        line-height: 1.3; 
+                        text-align: start; 
+                        padding-left: 180px; 
+                        padding-right: 200px; 
+                        color: black; 
+                        font-weight: 400;  
+                        display: flex; 
+                        justify-content: center; 
+                        align-items: center;
+                        margin-top: 20px;
+                    }
+
+                    @media (max-width: 768px) {
+                        .box-two-text {
+                            padding-left: 40px;
+                            padding-right: 40px;
+                            font-size: 18px;
+                            text-align: center;
+                        }
+                    }
+
+                    @media (max-width: 480px) {
+                        .box-two-text {
+                            padding: 15px;
+                            font-size: 16px;
+                            text-align: center;
+                            line-height: 1.4;
+                            margin: 15px auto;
+                            width: 90%;
+                        }
+                    }
+
+                    .box-three{
+                        display: flex; 
+                        flex-direction: column;
+                        gap: 100px; 
+                        
+                    }
+                    @media (max-width: 480px) {
+                        .box-three {
+                            font-size: 18px;
+                            gap: 30px;
+                            margin-left: 0;
+                            padding: 20px;
+                            width: 100vw;
+                            min-width: 100vw;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+                    @media(max-width: 480px){
+                        .box-three{
+                          min-width: 100vw;
+                          width: 100vw !important;
+                        }
+                    }
+
+                    @media (max-width: 768px) {
+                        .box-three {
+                            font-size: 18px;
+                            padding-left: 0px;
+                            padding-right: 0px;
+                        }
+                    }
+
+                    
+
+    .ivory-rec, .blk-rec, .lavender-rec {
+        width: 70% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+    }
+
+            
+
+                    .ivory-rec{
+                        width: 100%; height: 100%; object-fit: contain;
+                    }
+                    .blk-rec{
+                        width: 100%; height: auto; object-fit: contain;
+                    }
+                    .lavender-rec{
+                        width: 100%; height: auto; object-fit: contain;
+                    }
+
+                    @media (max-width: 480px) {
+                        
+                        .lavender-rec{
+                            width: 80px !important;
+                            height: auto !important;
+                        }
+                        .blk-rec{
+                            width: 80px !important;
+                            height: auto !important;
+                        }
+                        .ivory-rec{
+                            width: 80px !important;
+                            height: auto !important;
+                        }
+                    }
+
+
+                    .head-text{
+                        font-size: 18px;
+                        color: #8B8B8B; 
+                        font-weight: 400;
+                    }
+                    .body-text{
+                        font-size: 17px;
+                        color: black; font-weight: 400; font-size: 17px;
+                    }
+
+                    @media (max-width: 480px) {
+                        .head-text, .body-text{
+                            font-size: 13px;
+                        }
+                    }
+
+
+                    .box-three-container{
+                        display: flex; 
+                        flex-direction: row; 
+                        gap: 350px; 
+                    }
+
+                    @media (max-width: 480px) {
+                        .box-three-container {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 20px;
+                            width: 100%;
+                            padding: 0;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+
+                    .blk-rec-container-column, .lavender-rec-container-column, .ivory-rec-container-column{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                    }
+
+                    @media (max-width: 480px) {
+                        .blk-rec-container-column, .lavender-rec-container-column, .ivory-rec-container-column{
+                            margin-top: 0;
+                            gap: 4px;
+                            width: auto;
+                        }
+                    }
+
+                </style>
+                <div class="box three" style="padding: 10px; "> 
+                    <div style="" class="box-three">
+                        <div class="box-three-container">
+                            <div class="ivory-rec-container" style=" display: flex; flex-direction: row; gap: 20px;  ">
+                                <img class="ivory-rec" src="/Assets/ivoryrec.png" alt="Paltter"
+                                    />
+                                <div class="ivory-rec-container-column ">
+                                    <div style="display: flex; flex-direction: column;  ">
+                                        <span class="head-text" ">
+                                            Hex
+                                        </span>
+                                        
+                                        <span class="body-text" style="">
+                                            #FDFBD9
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="head-text" >
+                                            RGB
+                                        </span>
+                                        <br />
+                                        <span
+                                        class="body-text"
+                                          >
+                                            253,251,217
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="head-text" >
+                                            HSL
+                                        </span>
+                                        <br />
+                                        <span
+                                             class="body-text">
+                                            56°, 87%, 92%
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="head-text" >
+                                            CYMK 
+                                        </span>
+                                        <br />
+                                        <span
+                                          class="body-text">
+
+                                            0%, 0.8%, 14.2%, 0.8%
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blk-rec-container" style="display: flex; flex-direction: row; gap: 20px; ">
+                                <img class="blk-rec" src="/Assets/blkrec.png" alt="Paltter"
+                                    />
+                                <div class="blk-rec-container-column ">
+                                    <div style="display: flex; flex-direction: column; ">
+                                        <span class="head-text" >
+                                            Hex
+                                        </span>
+                                        <span  class="body-text">
+                                            #1A1619
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="head-text">
+                                            RGB
+                                        </span>
+                                        <br />
+                                        <span
+                                          class="body-text">
+                                            26, 22, 25
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="head-text">
+                                            HSL
+                                        </span>
+                                        <br />
+                                        <span
+                                            class="body-text">
+                                            310°, 8%, 9%
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="head-text">
+                                            CYMK
+                                        </span>
+                                        <br />
+                                        <span
+                                           class="body-text">
+
+                                            0%, 15.4%, 3.8%, 89.8%
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div>
+                            <div class="lavander-container" style="display: flex; flex-direction: row; gap: 20px; ">
+                                <img class="lavender-rec" src="/Assets/lavenderrec.png" alt="Paltter"
+                                    />
+                                <div class="lavender-rec-container-column">
+                                    <div style="display: flex; flex-direction: column;  ">
+                                        <span class="head-text">
+                                            Hex
+                                        </span>
+                                        <span class="body-text">
+                                            #FAF6F9
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="head-text">
+                                            RGB
+                                        </span>
+                                        <br />
+                                        <span
+                                           class="body-text">
+                                            250, 246, 249
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="head-text">
+                                            HSL
+                                        </span>
+                                        <br />
+                                        <span
+                                     class="body-text">
+                                            320°, 33%, 97%
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="head-text">
+                                            CYMK
+                                        </span>
+                                        <br />
+                                        <span
+                                            class="body-text">
+
+                                            0%, 1.6%, 0.4%, 2%
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <style>
+
+                    @media (max-width: 480px) {
+                        .blk-rec-container{
+                            position: relative;
+                            top: auto;
+                            left: auto;
+                            width: 90%;
+                            margin: 10px auto;
+                        }
+                    }
+                    .ivory-rec-container, .blk-rec-container, .lavander-container{
+                        width: 450px; height: 100%; 
+                    }
+
+                    .ivory-rec, .blk-rec, .lavender-rec{
+                        width:200px !important;
+                    }
+
+                    @media (max-width: 480px) {
+                         .ivory-rec, .blk-rec, .lavender-rec{
+                            width:80px !important;
+                            height: auto !important;
+                        }
+                    }
+
+                    @media (max-width: 480px) {
+                        .ivory-rec-container{
+                            position: relative;
+                            top: auto;
+                            left: auto;
+                            width: 90%;
+                            margin: 10px auto;
+                            gap: 10px;
+                        }
+                    }
+
+                   @media (max-width: 480px) {
+                        .lavander-container{
+                            position: relative;
+                            top: auto;
+                            left: auto;
+                            width: 90%;
+                            margin: 10px auto;
+                        }
+                   }
+                 .Image1{
+                        width: 700px; height:500px; object-fit: cover;
+                    }
+                    .Image2{
+                        width: 700px; height:500px; object-fit: cover; margin-right: 100px;
+                    }
+                    @media (max-width: 768px) {
+                        .Image1, .Image2 {
+                            width: 200px;
+                            height: 200px;
+                        }
+                    }   
+
+                    @media (max-width: 480px) {
+                        .Image1, .Image2 {
+                            width: 250px !important;
+                            height: 250px !important;
+                            margin: 20px auto;
+                            object-fit: cover;
+                        }
+
+                        /* Box four container - mobile layout */
+                        .box-four-container {
+                            display: flex !important;
+                            flex-direction: column !important;
+                            width: 100vw !important;
+                            padding: 20px 0 !important;
+                            align-items: center !important;
+                            justify-content: center !important;
+                            gap: 40px !important;
+                            height: auto !important;
+                        }
+                    }
+                </style>
+                <div class="box four">
+                    <div class="box-four-container"
+                        style="display: flex; flex-direction: row; gap:10px; padding: 0px; width: 100%; height: 100%;">
+                        <img class="Image1" src="/Assets/lightspeed poster 2.png" alt="Paltter" style="display: block; margin: 0 auto;" />
+                        <img class="Image2" src="/Assets/lightspeed mockips2 1.png" alt="Paltter" style="display: block; margin: 0 auto;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Register ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Function to fix spacing between sections
+            function fixSectionSpacing() {
+                // Get the horizontal section
+                const horizontalSection = document.getElementById('custom-cursor-section');
+                if (!horizontalSection) return;
+                
+                // Get the next sibling (the section that follows)
+                const nextSection = horizontalSection.nextElementSibling;
+                if (!nextSection) return;
+                
+                // Ensure there's no gap between them
+                nextSection.style.marginTop = '0';
+                nextSection.style.paddingTop = '0';
+                horizontalSection.style.marginBottom = '0';
+                horizontalSection.style.paddingBottom = '0';
+            }
+            
+            // Function to completely replace pin-spacer with a normal div
+            function replacePinSpacers() {
+                const pinSpacers = document.querySelectorAll('.pin-spacer');
+                pinSpacers.forEach(spacer => {
+                    // Create a new div to replace the pin-spacer
+                    const newContainer = document.createElement('div');
+                    newContainer.className = 'mobile-container';
+                    newContainer.style.cssText = "height: auto !important; min-height: 0 !important; max-height: none !important; width: 100% !important; padding: 0 !important; margin: 0 !important; position: static !important;";
+                    
+                    // Move all children from pin-spacer to the new div
+                    while (spacer.firstChild) {
+                        // Clone the child to avoid reference issues
+                        const child = spacer.firstChild;
+                        // Reset its styling
+                        if (child.style) {
+                            child.style.cssText = "height: auto !important; min-height: 0 !important; max-height: none !important; position: static !important; transform: none !important; margin: 0 !important; padding: 0 !important;";
+                        }
+                        newContainer.appendChild(child);
+                    }
+                    
+                    // Replace pin-spacer with the new div
+                    spacer.parentNode.replaceChild(newContainer, spacer);
+                });
+                
+                // After replacing pin-spacers, fix section spacing
+                fixSectionSpacing();
+            }
+            
+            // Function to aggressively reset pin-spacer styling
+            function resetPinSpacerStyles() {
+                const pinSpacers = document.querySelectorAll('.pin-spacer');
+                pinSpacers.forEach(spacer => {
+                    // Direct style override
+                    spacer.style.cssText = "height: auto !important; min-height: 0 !important; max-height: none !important; padding: 0 !important; margin: 0 !important; position: static !important; transform: none !important; inset: auto !important; top: auto !important; left: auto !important; right: auto !important; bottom: auto !important; width: 100% !important; display: block !important;";
+                    
+                    // Reset children
+                    const children = spacer.children;
+                    for (let i = 0; i < children.length; i++) {
+                        children[i].style.cssText = "height: auto !important; min-height: 0 !important; max-height: none !important; padding: 0 !important; margin: 0 !important; position: static !important; transform: none !important; inset: auto !important; top: auto !important; left: auto !important; right: auto !important; bottom: auto !important; width: 100% !important; display: block !important;";
+                    }
+                    
+                    // Remove any inline styles by setting them to empty
+                    spacer.setAttribute('style', '');
+                    spacer.style.cssText = "height: auto !important; min-height: 0 !important; max-height: none !important; padding: 0 !important; margin: 0 !important; position: static !important; transform: none !important; inset: auto !important; top: auto !important; left: auto !important; right: auto !important; bottom: auto !important; width: 100% !important; display: block !important;";
+                });
+                
+                // After resetting pin-spacers, fix section spacing
+                fixSectionSpacing();
+            }
+            
+            // Directly detect mobile and apply class to both html and body
+            const isMobile = window.innerWidth <= 480;
+            if (isMobile) {
+                document.documentElement.classList.add('mobile-view');
+                document.body.classList.add('mobile-view');
+                
+                // Kill any GSAP animations immediately for mobile
+                gsap.killTweensOf("*");
+                ScrollTrigger.getAll().forEach(st => st.kill());
+                
+                // Remove pin spacers completely
+                replacePinSpacers();
+                
+                // Force static positioning and auto height on all critical elements
+                const resetElements = document.querySelectorAll('.horizontal-section, .horizontal-container, .box, .box > div');
+                resetElements.forEach(el => {
+                    el.style.cssText = "height: auto !important; min-height: 0 !important; max-height: none !important; position: static !important; transform: none !important; padding: 0 !important; margin: 0 !important; inset: auto !important; top: auto !important; left: auto !important; right: auto !important; bottom: auto !important; display: block !important;";
+                });
+                
+                // Make all boxes take only the space they need
+                document.querySelectorAll('.box').forEach(box => {
+                    box.style.cssText = "height: auto !important; width: 100% !important; min-height: 0 !important; max-height: none !important; position: static !important; transform: none !important; padding: 10px 0 !important; margin: 0 !important; display: block !important;";
+                });
+            }
+
+            // Function to create responsive horizontal scroll
+            function createResponsiveScroll() {
+                // Always check if mobile first
+                const isMobile = window.innerWidth <= 480;
+                if (isMobile) {
+                    // Ensure mobile classes are applied to both html and body
+                    document.documentElement.classList.add('mobile-view');
+                    document.body.classList.add('mobile-view');
+                    
+                    // Kill all GSAP animations
+                    gsap.killTweensOf("*");
+                    ScrollTrigger.getAll().forEach(st => st.kill());
+                    
+                    // Reset all pin spacers and GSAP elements
+                    gsap.set('*', { clearProps: 'all' });
+                    
+                    // Replace pin spacers with normal divs
+                    replacePinSpacers();
+                    
+                    // Apply direct styles to override any generated CSS
+                    document.querySelectorAll('.horizontal-section, .horizontal-container, .box, .box > div').forEach(el => {
+                        el.style.cssText = "height: auto !important; min-height: 0 !important; max-height: none !important; position: static !important; transform: none !important; padding: 0 !important; margin: 0 !important; inset: auto !important; top: auto !important; left: auto !important; right: auto !important; bottom: auto !important; display: block !important;";
+                    });
+                    
+                    // Make sure there's no margin on the last box
+                    const boxes = document.querySelectorAll('.box');
+                    if (boxes.length > 0) {
+                        const lastBox = boxes[boxes.length - 1];
+                        lastBox.style.marginBottom = '0 !important';
+                        lastBox.style.paddingBottom = '0 !important';
+                    }
+                    
+                    // Ensure container has no bottom spacing
+                    const container = document.querySelector('.horizontal-container');
+                    if (container) {
+                        container.style.marginBottom = '0';
+                        container.style.paddingBottom = '0';
+                    }
+                    
+                    // Make sure section has no bottom spacing
+                    const section = document.querySelector('.horizontal-section');
+                    if (section) {
+                        section.style.marginBottom = '0';
+                        section.style.paddingBottom = '0';
+                    }
+                    
+                    // Fix spacing between sections
+                    fixSectionSpacing();
+                    
+                    // Hide top/bottom text elements on mobile
+                    document.querySelectorAll('.topText, .bottomText, .hide-on-mobile').forEach(el => {
+                        el.style.display = 'none';
+                        el.style.visibility = 'hidden';
+                    });
+                    
+                    // Show view book button
+                    const viewBookBtn = document.querySelector('.viewBook');
+                    if (viewBookBtn) {
+                        viewBookBtn.style.display = 'inline-flex';
+                        viewBookBtn.style.visibility = 'visible';
+                    }
+                    
+                    // Layout specific containers for mobile
+                    const boxFourContainer = document.querySelector('.box-four-container');
+                    if (boxFourContainer) {
+                        boxFourContainer.style.cssText = 'display: flex !important; flex-direction: column !important; width: 100% !important; align-items: center !important; justify-content: center !important; gap: 20px !important; padding: 20px 0 !important;';
+                    }
+                    
+                    // Center images in box four
+                    document.querySelectorAll('.Image1, .Image2').forEach(img => {
+                        img.style.cssText = 'width: 250px !important; height: 250px !important; margin: 0 auto !important; display: block !important; object-fit: cover !important;';
+                    });
+                    
+                    return; // Exit early - no scroll effects on mobile
+                }
+                
+                // Desktop code only runs if not mobile
+                document.documentElement.classList.remove('mobile-view');
+                document.body.classList.remove('mobile-view');
+                
+                // Clear any existing ScrollTriggers
+                ScrollTrigger.getAll().forEach(st => st.kill());
+                
+                // Get sections and calculate dimensions
+                const sections = document.querySelectorAll('.box');
+                const numSections = sections.length;
+                
+                // Calculate responsive dimensions for tablet/desktop
+                let sectionWidth = 100; // Default width in vw
+                let contentScale = 1;
+                
+                // Adjust dimensions for different screen sizes
+                if (window.innerWidth <= 768 && window.innerWidth > 480) {
+                    sectionWidth = 100;
+                    contentScale = 0.9;
+                }
+                
+                // Calculate total width based on section width
+                const totalWidth = numSections * sectionWidth;
+                
+                // Desktop adjustments
+                document.querySelectorAll('.topText, .bottomText, .hide-on-mobile').forEach(el => {
+                    el.style.cssText = 'display: block !important; visibility: visible !important;';
+                });
+                
+                const viewBookBtn = document.querySelector('.viewBook');
+                if (viewBookBtn) {
+                    viewBookBtn.style.cssText = 'display: none !important; visibility: hidden !important;';
+                }
+                
+                // Set container for horizontal layout
+                const container = document.querySelector('.horizontal-container');
+                if (container) {
+                    container.style.cssText = `width: ${totalWidth}vw; flex-direction: row; height: 100vh;`;
+                }
+                
+                // Set content scale for tablet
+                if (window.innerWidth <= 768 && window.innerWidth > 480) {
+                    // Scale content containers
+                    gsap.set('.box > div', {
+                        scale: contentScale,
+                        transformOrigin: 'center center'
+                    });
+                    
+                    // Apply section width to each box
+                    sections.forEach(section => {
+                        gsap.set(section, {
+                            width: sectionWidth + 'vw',
+                            minWidth: sectionWidth + 'vw'
+                        });
+                    });
+                    
+                    // Set container width
+                    gsap.set('.horizontal-container', {
+                        width: totalWidth + 'vw'
+                    });
+                } else {
+                    // Reset for desktop
+                    gsap.set('.box > div', { clearProps: 'scale,transformOrigin' });
+                    gsap.set(sections, { clearProps: 'width,minWidth' });
+                    gsap.set('.horizontal-container', { width: totalWidth + 'vw' });
+                }
+                
+                // Create horizontal scroll animation for desktop/tablet
+                gsap.to('.horizontal-container', {
+                    x: () => -(totalWidth - 100) + 'vw',
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.horizontal-section',
+                        pin: true,
+                        start: 'top top',
+                        end: () => `+=${totalWidth}%`,
+                        scrub: window.innerWidth <= 768 ? 0.5 : 1, // Faster scrub on tablet
+                        anticipatePin: 1,
+                        invalidateOnRefresh: true,
+                        markers: false, // Set to true for debugging
+                        snap: {
+                            snapTo: 1 / (numSections - 1),
+                            duration: { min: 0.1, max: 0.3 },
+                            delay: 0,
+                            ease: 'power1.inOut'
+                        }
+                    }
+                });
+                
+                // Handle touch events for better swiping on tablet
+                if ('ontouchstart' in window && window.innerWidth <= 768 && window.innerWidth > 480) {
+                    let touchStartX = 0;
+                    let touchDeltaX = 0;
+                    let scrollProgress = 0;
+                    const scrollTriggerInstance = ScrollTrigger.getById(
+                        [...ScrollTrigger.getAll()].find(st => st.trigger.classList.contains('horizontal-section'))?.id
+                    );
+                    
+                    document.querySelector('.horizontal-section').addEventListener('touchstart', e => {
+                        touchStartX = e.touches[0].clientX;
+                        if (scrollTriggerInstance) {
+                            scrollProgress = scrollTriggerInstance.progress;
+                        }
+                    }, { passive: true });
+                    
+                    document.querySelector('.horizontal-section').addEventListener('touchmove', e => {
+                        if (scrollTriggerInstance) {
+                            touchDeltaX = touchStartX - e.touches[0].clientX;
+                            const newProgress = scrollProgress + (touchDeltaX / (window.innerWidth * (numSections - 1)));
+                            scrollTriggerInstance.scroll(scrollTriggerInstance.start + 
+                                (newProgress * (scrollTriggerInstance.end - scrollTriggerInstance.start)));
+                            e.preventDefault();
+                        }
+                    }, { passive: false });
+                }
+            }
+            
+            // Initialize scroll
+            createResponsiveScroll();
+            
+            // Update on resize with debounce for better performance
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    const isMobile = window.innerWidth <= 480;
+                    if (isMobile) {
+                        // Just apply mobile style fixes on resize to mobile
+                        document.documentElement.classList.add('mobile-view');
+                        document.body.classList.add('mobile-view');
+                        gsap.killTweensOf("*");
+                        ScrollTrigger.getAll().forEach(st => st.kill());
+                        replacePinSpacers();
+                    } else {
+                        // Reinitialize everything for desktop/tablet
+                        ScrollTrigger.getAll().forEach(st => st.kill());
+                        createResponsiveScroll();
+                    }
+                }, 250);
+            });
+        });
+    </script>

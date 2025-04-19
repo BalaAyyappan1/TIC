@@ -842,34 +842,152 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-    <!-- <style>
-        /* Default cursor for the whole page */
+
+
+
+
+
+     <style>
         body {
-            cursor: default;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .horizontal-section {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        @media (max-width: 480px) {
+            .horizontal-section, .pin-spacer {
+                height: 100%;
+            }
+        }
+
+
+        .horizontal-container {
+            display: flex;
+            height: 100vh;
+            will-change: transform;
+        }
+
+        @media (max-width: 480px) {
+            .horizontal-container {
+                background-color:white;
+                height:100vh;
+            }
         }
         
-        /* Custom cursor only for the slider section */
-        #custom-cursor-section,
-    #custom-cursor-section *,
-    #custom-cursor-section .slider-container,
-    #custom-cursor-section .slider-track,
-    #custom-cursor-section .slider-item {
-        cursor: url('/Assets/cursor.svg'), pointer !important;
-    
-        }   
-    </style> -->
+        .box.one {
+            width: 100vw;
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    <style></style>
+        .box.two {
+            width: 100vw;
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+
+        @media (max-width:480px) {
+            .box-two{
+                width: 100vw;
+                height: 100% !important;
+             
+            }
+        }
+
+        .box.three {
+            width: 100vw;
+
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
 
-    
+        @media (max-width:480px) {
+            .box-three{
+                width: 100vw;
+                height: 60vh !important;
+          
+            }
+        }
+        .box.four {
+            width: 100vw;
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box>div {
+            width: 100px;
+            height: 100px;
+
+            color: #FFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .one {
+            background-color: #FFFFFF;
+        }
+
+        .two {
+            background-color: #FFFFFF;
+        }
+
+        .three {
+            background-color: #FFFFFF;
+        }
+
+        .four {
+            background-color: #FFFFFF;
+        }
+
+
+        .box-one-image{
+            width: 70%;
+            height: 70%;
+            position: relative;
+            object-fit: contain;
+        }
+
+        @media (max-width: 480px) {
+            .box-one-image{
+                width: 50%;
+                height: 50%;
+                object-fit: cover;
+                position: relative;
+            }
+        }
+    </style>
+
+
+
     <section class="horizontal-section" id="custom-cursor-section">
         <div class="pin-spacer" style="background-color:white;">
             <div class="horizontal-container">
                 <div class="box one" style="width: 100%;;">
-                    <div style="width: 100%; height: 100%; object-fit: contain;">
+                    <div class="box-one-image" style="width: 100%; height: 100%; object-fit: contain;">
                         <img src="/Assets/Untitled design (20) 1.png" alt="Slider Image 1"
-                            style="width: 70%; height: 70%; object-fit: cover; position:relative;">
+                            >
 
                         <div class="topText"
                             style="position: absolute; top: 10%; right: 5%; width: 529px; color: black; text-align: start; font-size: 20px; letter-spacing: -1.12px; line-height: 24px; font-weight: 400;">
@@ -886,25 +1004,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button 
   class="viewBook" 
   onclick="window.open('/Assets/brandbook.pdf', '_blank')" 
-  style="
-    border: 1px solid #000;
-    background-color: transparent;
-    color: #000;
-    font-size: 1.125rem; /* 18px (better for responsiveness) */
-    letter-spacing: -0.5px;
-    line-height: 1.5;
-    font-weight: 400;
-   
-    padding: 12px 24px;
-    border-radius: 24px; /* subtle rounded corners */
-    cursor: pointer;
-    transition: all 0.3s ease; /* smooth hover effect */
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px; /* spacing between icon & text (if added) */
-"
-
+  
 >
   View Brandbook
 </button>
@@ -922,12 +1022,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
 
                 <style>
-                    @media (max-width: 480px) {
-                    .viewBook{
-                        position: absolute; bottom: 1%; left: 30%; color:black; color: black; font-weight: 400; text-align: start; font-size: 24px; letter-spacing: -1.12px; line-height: 24px; z-index: 1000; display: flex; flex-direction: row; align-items: center; justify-content: center; cursor: pointer; z-index: 1000;
-                        
-                    }
-                }
+                   @media (max-width: 480px) {
+    .viewBook {
+        position: absolute;
+        bottom: 1%;
+        left: 30%;
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 30px;
+        padding: 10px 12px;
+        font-weight: 400;
+        text-align: start;
+        font-size: 20px;
+        letter-spacing: -1.12px;
+        line-height: 24px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+}
+
+/* Hide brandbook-text on screens up to 1400px */
+@media (max-width: 1400px) {
+    .brandbook-text {
+        display: none;
+    }
+}
 
                 @media (max-width:1400px) {
                     .brandbook-text{
@@ -1100,7 +1224,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     @media (max-width: 480px) {
                         .blk-rec-container-column, .lavender-rec-container-column, .ivory-rec-container-column{
-                            margin-top:100px;
+                            margin-top:160px;
                             gap: 4px;
                         }
                     }
@@ -1259,7 +1383,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     @media (max-width: 480px) {
                         .blk-rec-container{
                             position: absolute;
-                            top: -3%;
+                            top: -7%;
                             left: 10%;
                         }
 
@@ -1281,7 +1405,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     @media (max-width: 480px) {
                         .ivory-rec-container{
                             position: absolute;
-                            top: 38%;
+                            top: 48%;
                             gap: 10px;
                             left: 10%;
                         }
@@ -1292,7 +1416,7 @@ document.addEventListener('DOMContentLoaded', function() {
                    @media (max-width: 480px) {
                     .lavander-container{
                         position: absolute;
-                        top: 80%;
+                        top: 20%;
                         left: 10%;
                         
                     }
@@ -1307,14 +1431,25 @@ document.addEventListener('DOMContentLoaded', function() {
                         .Image1, .Image2 {
                             width: 200px;
                             height: 200px;
+                            margin-right: 0;
                         }
                     }   
 
                     @media (max-width: 480px) {
-                        .Image1, .Image2 {
-                            width: 200px !important;
-                            height: 200px !important;
+                        .Image1 {
+                            width: 100% !important;
+                            height: 100% !important;
+                            margin-right: 0;
                         }
+
+
+                        .Image2{
+                            width: 800px !important;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                        
+                        
 
                         /* Default (Desktop) - Row Layout */
 .box-four-container {
@@ -1330,24 +1465,25 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 480px) {
     .box-four-container {
     display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 20px;
     width: 100%;
-
     }
     
     /* Optional: Adjust image sizes for mobile */
     .box-four-container img {
         max-width: 100%; /* Ensures images don't overflow */
-        height: 300px;    /* Maintains aspect ratio */
+        height: auto;    /* Maintains aspect ratio */
     }
 }
                     }
                 </style>
                 <div class="box four">
                     <div class="box-four-container"
-                        style="display: flex; flex-direction: row; gap:10px; padding: 0px; width: 100%; height: 100%;    ">
+                        style="display: flex; flex-direction: row; gap:10px; padding: 0px; width: 100%; height: 100%;">
                         <img class="Image1" src="/Assets/lightspeed poster 2.png" alt="Paltter" />
-                        <img class="Image2" src="/Assets/lightspeed mockips2 1.png" alt="Paltter"
-                            />
+                        <img class="Image2" src="/Assets/lightspeed mockips2 1.png" alt="Paltter" />
                     </div>
                 </div>
             </div>
@@ -1365,10 +1501,10 @@ document.addEventListener('DOMContentLoaded', function() {
         <div style="position: relative; ">
             <img src="/Assets/caara loggo 1 (1).png" alt="Car" style="width: 100%; height: 100%; object-fit: cover; ">
             <div class="caara-description" style="position: absolute; bottom: 0; left: 50%; transform: translate(-50%, -50%); color: rgba(255, 255, 255, 0.3); font-size: 18px; line-height: 24px; font-weight: 400; text-align: center;">
-                Caara isn’t just a jewelry brand—it’s a feeling.
+                Caara isn't just a jewelry brand—it's a feeling.
                 <span style="font-size: 18px; font-weight: 400; display: block; text-align: center; width: 1309px; margin-top: -22px; ">
                   <br />
-                  When we designed the logo, we imagined soft light, quiet elegance, and pieces that speak without saying too much. The result? A minimalistic mark that feels like a whisper in  gold. Clean. Airy. Intentional. Just like the jewelry, the logo doesn’t beg for attention—it earns it with grace. Designed to linger in memory, not just on paper.
+                  When we designed the logo, we imagined soft light, quiet elegance, and pieces that speak without saying too much. The result? A minimalistic mark that feels like a whisper in  gold. Clean. Airy. Intentional. Just like the jewelry, the logo doesn't beg for attention—it earns it with grace. Designed to linger in memory, not just on paper.
                 </span>
               </div>
 
@@ -1543,7 +1679,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     sizes="(max-width: 479px) 100vw, (max-width: 767px) 91vw, (max-width: 991px) 46vw, (max-width: 1919px) 47vw, 909.9921875px"
                     alt="E&amp;W Design Studio Office Meeting Room" class="parallax-img" />
                   <div class="card-title flex">
-                    <h3 class="text-color-white width-10">We’re always looking for new collaborations.<br /></h3>
+                    <h3 class="text-color-white width-10">We're always looking for new collaborations.<br /></h3>
                     <div class="button-container-flex"><a href="./contact" class="primary-button-arrow-white w-inline-block">
                         <div class="button-wrapper">
                           <div class="link-button-text">Contact us</div><img
@@ -1608,119 +1744,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
     </section>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        .horizontal-section {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        @media (max-width: 480px) {
-            .horizontal-section, .pin-spacer {
-                height: 100vh;
-            }
-        }
-
-
-        .horizontal-container {
-            display: flex;
-            height: 100vh;
-            will-change: transform;
-        }
-
-        @media (max-width: 480px) {
-            .horizontal-container {
-                background-color:white;
-                height: 80vh;
-            }
-        }
-        
-        .box.one {
-            width: 100vw;
-            flex-shrink: 0;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .box.two {
-            width: 100vw;
-            flex-shrink: 0;
-            position: relative;
-            display: flex;
-            justify-content: start;
-            align-items: center;
-        }
-
-        @media (max-width:480px) {
-            .box-two{
-                width: 100vw;
-                height: 100vh !important;
-             
-            }
-        }
-
-        .box.three {
-            width: 100vw;
-
-            flex-shrink: 0;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-
-        @media (max-width:480px) {
-            .box-three{
-                width: 100vw;
-                height: 60vh !important;
-          
-            }
-        }
-        .box.four {
-            width: 100vw;
-            flex-shrink: 0;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .box>div {
-            width: 100px;
-            height: 100px;
-
-            color: #FFF;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-        }
-
-        .one {
-            background-color: #FFFFFF;
-        }
-
-        .two {
-            background-color: #FFFFFF;
-        }
-
-        .three {
-            background-color: #FFFFFF;
-        }
-
-        .four {
-            background-color: #FFFFFF;
-        }
-    </style>
+   
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -1738,6 +1762,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create the horizontal scroll animation
             gsap.to('.horizontal-container', {
                 x: () => -(totalWidth - 100) + 'vw',
+                y: 0,
                 ease: 'none',
                 scrollTrigger: {
                     trigger: '.horizontal-section',
@@ -1752,6 +1777,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     </script>
+    
 
 
 
@@ -2238,6 +2264,7 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
             </div>
           </div>
+        </div>
         </div> -->
     </div>
     <!-- <div id="smooth-content" class="smooth-content">
