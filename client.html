@@ -859,7 +859,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- Category Question (Question 5) - initially hidden -->
                 <div class="question-container" id="question-5" style="display: none; opacity: 0; transform: translateY(40px); transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1); position: relative;">
-                    <div class="back-button-container" type="submit" style="position: absolute; bottom: -20pc; right: -23pc; display: flex; justify-content: flex-end; width: 100%;">
+                    <div class="back-button-container"  type="submit" style="position: absolute; bottom: -20pc; right: -23pc; display: flex; justify-content: flex-end; width: 100%;">
                         <button class="back-button" onclick="showQuestion(4)" style="background-color: white; color: black; border: 1px solid rgba(255,255,255,0.3); padding: 5px 10px; border-radius: 20px; font-size: 16px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.3s; display: flex; align-items: center; gap: 3px;">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 15 12 9 18 15"></polyline></svg>
@@ -885,7 +885,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                   
                     <div style="display: flex; align-items: center; gap: 15px;">
-                      <button class="next-button" type="submit" onclick="validateAndProceed(5); return false;" style="background-color: white; color: black; border: none; padding: 10px 20px; border-radius: 20px; font-size: 16px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.3s; display: flex; align-items: center; gap: 8px;">
+                      <button class="next-button" id="submit" type="submit"  return false;" style="background-color: white; color: black; border: none; padding: 10px 20px; border-radius: 20px; font-size: 16px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.3s; display: flex; align-items: center; gap: 8px;">
                         OK
                       </button>
                       <span style="color: rgba(255,255,255,0.7); font-size: 14px;">Press Enter ↵</span>
@@ -908,7 +908,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
           </form>
-          <script>
+          <!-- <script>
 document.querySelector('.Forms').addEventListener('submit', async function(e) {
   e.preventDefault();
   
@@ -949,7 +949,7 @@ document.querySelector('.Forms').addEventListener('submit', async function(e) {
     submitButton.textContent = 'OK';
   }
 });
-  </script>
+  </script> -->
 <script>
   // Current question tracker
   let currentQuestion = 1;
@@ -1081,23 +1081,13 @@ document.querySelector('.Forms').addEventListener('submit', async function(e) {
             break;
             
         case 5:
-            const categoryInput = document.getElementById('category-input');
-            if (categoryInput.value) {
-                isValid = true;
-                const formElement = document.querySelector('form.Forms');
-            if (!formElement) {
-                console.error('Form element not found');
-                return;
-            }
-            
-            // Submit the form properly
-            submitForm(formElement);
-            return;
-        
-            } else {
-                showError('category', 'Please select a category');
-            }
-            break;
+        const categoryInput = document.getElementById('category-input');
+      if (categoryInput.value) {
+        isValid = true;
+      } else {
+        showError('category', 'Please select a category');
+      }
+      break;
     }
     
     // If validation passes, proceed to next question
@@ -1162,56 +1152,67 @@ document.querySelector('.Forms').addEventListener('submit', async function(e) {
   }
   
   // Function to handle form submission
-  async function submitForm() {
-    const form = document.querySelector('.Forms');
-    
-    // Prepare form data
-    const formData = {
-        timestamp: new Date().toISOString(),
-        name: document.getElementById('name-input').value,
-        email: document.getElementById('email-input').value,
-        phone: document.getElementById('phone-input').value,
-        service: document.getElementById('selected-service').value,
-        category: document.getElementById('category-input').value
-    };
+  function submitForm() {
+    document.querySelector('.Forms').addEventListener('submit', function(e) {
+  e.preventDefault();
+  handleFormSubmission();
+});
 
-    console.log('Submitting:', formData);
-
-    try {
-        // Use a proxy server or direct JSON submission
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            // Important: Don't use 'no-cors' as it hides errors
-            mode: 'cors',
-            redirect: 'follow'
-        });
-
-        // Handle Google Apps Script redirect
-        if (response.redirected) {
-            const finalUrl = response.url;
-            const finalResponse = await fetch(finalUrl, {
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const result = await finalResponse.text();
-            console.log('Final response:', result);
-        } else {
-            const result = await response.text();
-            console.log('Response:', result);
-        }
-
-        showThankYouMessage();
-    } catch (error) {
-        console.error('Submission error:', error);
-        showThankYouMessage(); // Still show success UI
+function handleFormSubmission() {
+  const form = document.querySelector('.Forms');
+  const submitButton = document.querySelector('#submit');
+  
+  // Run validation for all fields (question 1-5)
+  let allValid = true;
+  for (let i = 1; i <= 5; i++) {
+    if (!validateAndProceed(i)) {
+      allValid = false;
+      // Don't break here so all fields get validated
     }
+  }
+  
+  if (!allValid) {
+    alert('Please fix the errors in the form before submitting.');
+    return;
+  }
+
+  // Disable the submit button to prevent multiple submissions
+  submitButton.disabled = true;
+  submitButton.textContent = 'Submitting...';
+  
+  // Create FormData from the form
+  const formData = new FormData(form);
+  
+  // Add timestamp
+  formData.append('timestamp', new Date().toISOString());
+  
+  // Submit to Google Sheets
+  fetch('https://script.google.com/macros/s/AKfycbyW-ipoc8NLxkyVU44CBgyLjkvn9wpDuhU4q3YYIAKfmrsfq7hmZhAJuuXhQ_AL4gwRaw/exec', {
+// In your frontend JavaScript
+
+  method: 'POST',
+  body: formData
+})
+.then(async response => {
+  const data = await response.json();
+  if (data.result !== "success") {
+    throw new Error('Server reported failure');
+  }
+  return data;
+})
+.then(data => {
+  // Success - hide form and show message
+  document.querySelector('.Forms').style.display = 'none';
+  document.getElementById('thank-you-message').style.display = 'block';
+})
+.catch(error => {
+  console.error('Error:', error);
+  alert('Submission failed. Please try again.');
+});
+    
+}
+
+
 }
   // Initialize the form when the page loads
   document.addEventListener('DOMContentLoaded', function() {
