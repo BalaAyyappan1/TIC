@@ -69,6 +69,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     }
                 });
             });
+
+            // Add smooth scroll to form section on mobile
+            const scrollDownElement = document.querySelector('.scroll-down-mobile');
+            if (scrollDownElement) {
+                scrollDownElement.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const formSection = document.querySelector('.Forms');
+                    if (formSection) {
+                        formSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+
+            // Also add scrolling on desktop
+            const scrollDownDesktop = document.querySelector('.scroll-down');
+            if (scrollDownDesktop) {
+                scrollDownDesktop.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const formSection = document.querySelector('.Forms');
+                    if (formSection) {
+                        formSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
         });
     </script>
 
@@ -675,16 +699,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
       </style>
 
-        <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 15px; color: white; font-size: 20px; line-height: 25px;">
+        <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 15px; color: white; font-size: 20px; line-height: 25px; cursor: pointer;" class="scroll-down-container">
   
             <!-- Animated Circle -->
             <div style="width: 10px; height: 10px; border-radius: 50%; background-color: white; animation: pulseCircle 1.5s infinite;"></div>
             
             <!-- Text -->
             <!-- <span style="font-family: 'Inter', sans-serif; font-weight: 400;">Scroll down to connect with us</span> -->
-            <span class="scroll-down" style="font-family: 'Inter', sans-serif; font-weight: 400;">Scroll down to connect with us</span>
+            <span class="scroll-down" style="font-family: 'Inter', sans-serif; font-weight: 400; cursor: pointer;">Scroll down to connect with us</span>
 
-            <span class="scroll-down-mobile" style="font-family: 'Inter', sans-serif; font-weight: 400;">Connect with us</span>
+            <span class="scroll-down-mobile" style="font-family: 'Inter', sans-serif; font-weight: 400; cursor: pointer;">Connect with us</span>
 
             <style>
               .scroll-down{
@@ -692,6 +716,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               }
               .scroll-down-mobile{
                 display: none;
+              }
+              .scroll-down-container {
+                transition: opacity 0.3s ease;
+              }
+              .scroll-down-container:hover {
+                opacity: 0.8;
               }
               @media (max-width: 768px) {
                 .scroll-down{
@@ -728,7 +758,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               padding: 0;
               width: 100%;
               height: 100%;
-              overflow: hidden;
+              overflow-x: hidden;
+              overflow-y: auto;
+            }
+
+            /* Fix for mobile scrolling */
+            @media (max-width: 767px) {
+              html, body {
+                overflow: auto;
+                height: auto;
+                position: relative;
+              }
+              
+              .form-main-container {
+                height: 100vh; /* Use viewport height */
+                min-height: 550px; /* Minimum height for small screens */
+                overflow-y: auto;
+              }
+              
+              section {
+                position: relative;
+                overflow: visible;
+              }
             }
           </style>
           
@@ -946,13 +997,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%;
-            overflow: hidden;
           }
 
           /* Form Container Styles */
           .form-main-container {
-            height: 100vh;
+            min-height: 100vh;
             width: 100%;
             padding: 0;
             margin: 0;
@@ -963,9 +1012,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             font-family: 'Inter', sans-serif;
             color: white;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
           }
-
+          
+          /* Mobile specific adjustments */
+          @media (max-width: 767px) {
+            .Forms {
+              scroll-margin-top: 50px;
+            }
+            
+            .form-main-container {
+              padding-top: 40px;
+              padding-bottom: 40px;
+            }
+          }
+          
           .typeform-container {
             width: 100%;
             max-width: 700px;
@@ -1987,6 +2048,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         console.error('First question element not found');
       }
     });
+    </script>
+
+    <script>
+      // Add click event to scroll indicator
+      document.addEventListener('DOMContentLoaded', function() {
+        const scrollContainer = document.querySelector('.scroll-down-container');
+        if (scrollContainer) {
+          scrollContainer.addEventListener('click', function() {
+            const formElement = document.querySelector('.Forms');
+            if (formElement) {
+              formElement.scrollIntoView({behavior: 'smooth'});
+            }
+          });
+        }
+        
+        // Make sure the form is accessible on mobile
+        if (window.innerWidth <= 767) {
+          document.body.style.overflow = 'auto';
+          document.documentElement.style.overflow = 'auto';
+        }
+      });
     </script>
 
 </body>
