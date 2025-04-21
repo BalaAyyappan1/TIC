@@ -2246,15 +2246,16 @@ document.addEventListener('DOMContentLoaded', function() {
             function resetAnimations() {
                 const topText = document.querySelector(".topText");
                 const bottomText = document.querySelector(".bottomText");
-
-                // Fade out the text
-
             }
+
+            // Track whether animations have played
+            let animationsPlayed = false;
 
             // Start both animations simultaneously
             function startAnimations(entries) {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersecting && !animationsPlayed) {
+                        animationsPlayed = true;
                         const topText = document.querySelector(".topText");
                         const bottomText = document.querySelector(".bottomText");
 
@@ -2270,7 +2271,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         setTimeout(() => {
                             // Animate both texts simultaneously
                             animateText(topText, topTextWords, 100);
-                            animateText(bottomText, bottomTextWords, 100,);
+                            animateText(bottomText, bottomTextWords, 100);
                         }, 50);
                     } else {
                         // Optionally, you can reset the animations when the section is not visible
@@ -2292,9 +2293,9 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
     <style>
         .video-section {
-            opacity: 0;
+            /* opacity: 0;
             /* Start hidden */
-            transition: opacity 1s ease;
+            /* transition: opacity 1s ease; */ */
             /* Smooth transition */
         }
     </style>
