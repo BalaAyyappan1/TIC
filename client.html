@@ -821,7 +821,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
               
               <!-- Email Question (Question 2) - initially hidden -->
-              <div class="question-container" id="question-4">
+              <div class="question-container" id="question-2">
                 <div class="back-button-container">
                   <button class="back-button" type="button" onclick="showQuestion(1)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
@@ -846,7 +846,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
               
               <!-- Phone Question (Question 3) - initially hidden -->
-              <div class="question-container" id="question-5">
+              <div class="question-container" id="question-3">
                   <div class="back-button-container">
                       <button class="back-button" type="button" onclick="showQuestion(2)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
@@ -871,7 +871,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
 
               <!-- Service Question (Question 4) - initially hidden -->
-              <div class="question-container" id="question-2">
+              <div class="question-container" id="question-4">
                   <div class="back-button-container">
                       <button class="back-button" type="button" onclick="showQuestion(3)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
@@ -933,12 +933,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <button class="next-button" type="button" onclick="validateAndProceed(4)">
                       OK
                     </button>
-                    <span class="enter-hint">Press Enter ↵</span>
+                    <!-- <span class="enter-hint">Press Enter ↵</span> -->
                   </div>
               </div>
 
               <!-- Category Question (Question 5) - initially hidden -->
-              <div class="question-container" id="question-3">
+              <div class="question-container" id="question-5">
                   <div class="back-button-container">
                       <button class="back-button" type="button" onclick="showQuestion(4)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
@@ -971,7 +971,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <button class="next-button" id="submit" type="button" onclick="submitToSheet()">
                       OK
                     </button>
-                    <span class="enter-hint">Press Enter ↵</span>
+                    <!-- <span class="enter-hint">Press Enter ↵</span> -->
                   </div>
               </div>
               
@@ -980,11 +980,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="thank-you-emoji">🎉</div>
                 <h2 class="thank-you-title">Thank you!</h2>
                 <p class="thank-you-message">We'll be in touch with you shortly.</p>
-                <a class="back-home" href="/" style="color: white; text-decoration: none; font-size: 16px; font-weight: 500; font-family: 'Inter', sans-serif;">Back to Home</a>
+                <p class="redirect-message">Redirecting to home page in <span id="countdown">3</span> seconds...</p>
+                <!-- <a class="back-home" href="/" style="color: white; text-decoration: none; font-size: 16px; font-weight: 500; font-family: 'Inter', sans-serif;">Back to Home</a> -->
               </div>
               <style>
                 .back-home:hover{
                   text-decoration: underline;
+                }
+                .redirect-message {
+                  color: #999;
+                  font-size: 14px;
+                  margin-top: 5px;
+                  margin-bottom: 15px;
                 }
               </style>
             </div>
@@ -1459,6 +1466,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </style>
 
         <script>
+          // Global variable to track current question
+          let currentQuestion = 1;
+          
           document.addEventListener('DOMContentLoaded', function() {
             // Set the timestamp when the form loads
             document.getElementById('timestamp').value = new Date().toISOString();
@@ -1504,13 +1514,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               // Add enter key press handling
               input.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
-                  e.preventDefault();
-                  const questionId = this.closest('.question-container').id;
-                  const questionNum = questionId.split('-')[1];
-                  if (questionNum === '5') {
-                    submitToSheet();
-                  } else {
-                    validateAndProceed(parseInt(questionNum));
+                  e.preventDefault(); // Prevent default form submission
+                  
+                  // For text/email/phone inputs, trigger validation
+                  if (this.type === 'text' || this.type === 'email' || this.type === 'tel') {
+                    // Let the main keydown handler take care of it
+                    // This helps prevent double processing of Enter key
+                    return;
                   }
                 }
               });
@@ -1551,6 +1561,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 document.getElementById('service-error').style.opacity = '0';
                 document.getElementById('service-error').style.transform = 'translateY(-5px)';
               });
+            });
+
+            // Add keydown handler for all questions
+            document.addEventListener('keydown', function(e) {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                
+                switch (currentQuestion) {
+                  case 1:
+                    // Name validation
+                    const nameInput = document.getElementById('name-input');
+                    if (nameInput.value.trim()) {
+                      validateAndProceed(1);
+                    } else {
+                      showError(1, 'Please enter your name');
+                    }
+                    break;
+                    
+                  case 2:
+                    // Email validation
+                    const emailInput = document.getElementById('email-input');
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (emailRegex.test(emailInput.value.trim())) {
+                      validateAndProceed(2);
+                    } else {
+                      showError(2, 'Please enter a valid email address');
+                    }
+                    break;
+                    
+                  case 3:
+                    // Phone validation
+                    const phoneInput = document.getElementById('phone-input');
+                    if (phoneInput.value.trim()) {
+                      validateAndProceed(3);
+                    } else {
+                      showError(3, 'Please enter your phone number');
+                    }
+                    break;
+                    
+                  case 4:
+                    // Service validation
+                    if (selectedServices.length > 0) {
+                      validateAndProceed(4);
+                    } else {
+                      showError(4, 'Please select at least one service');
+                    }
+                    break;
+                    
+                  case 5:
+                    // Category validation and form submission
+                    const categoryInput = document.getElementById('category-input');
+                    if (categoryInput.value !== '') {
+                      // Set timestamp before submitting
+                      document.getElementById('timestamp').value = new Date().toISOString();
+                      submitToSheet();
+                    } else {
+                      showError(5, 'Please select a category');
+                    }
+                    break;
+                }
+              }
             });
           });
           
@@ -1601,6 +1672,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           // Function to show a specific question
           function showQuestion(questionNum) {
+            // Update the current question
+            currentQuestion = questionNum;
+            
             // Hide all questions
             document.querySelectorAll('.question-container').forEach(question => {
               question.style.opacity = '0';
@@ -1697,21 +1771,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               });
               
               setTimeout(() => {
-                const thankYou = document.getElementById('thank-you');
-                thankYou.style.display = 'block';
+                const thankYouElement = document.getElementById('thank-you');
+                thankYouElement.style.display = 'block';
                 setTimeout(() => {
-                  thankYou.style.opacity = '1';
-                  thankYou.style.transform = 'translateY(0)';
+                  thankYouElement.style.opacity = '1';
+                  thankYouElement.style.transform = 'translateY(0)';
+                  
+                  // Start the countdown for redirection
+                  let seconds = 3;
+                  const countdownElement = document.getElementById('countdown');
+                  const countdownInterval = setInterval(() => {
+                    seconds--;
+                    countdownElement.textContent = seconds;
+                    
+                    if (seconds <= 0) {
+                      clearInterval(countdownInterval);
+                      window.location.href = '/';
+                    }
+                  }, 1000);
+                  
+                  // Set progress to 100%
+                  document.getElementById('progress-fill').style.width = '100%';
                 }, 50);
-                
-                // Set progress to 100%
-                document.getElementById('progress-fill').style.width = '100%';
               }, 300);
             })
             .catch(error => {
+              console.error('Error:', error);
               submitButton.textContent = 'OK';
               submitButton.disabled = false;
-              alert('There was an error submitting the form. Please try again.');
+              showError(5, 'There was an error submitting the form. Please try again.');
             });
           }
           
@@ -2023,18 +2111,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // Add enter key press handling
         input.addEventListener('keypress', function(e) {
           if (e.key === 'Enter') {
-            e.preventDefault();
-            if (currentQuestion === 5 && this.id === 'category-input') {
-              // For the final question, set timestamp and submit form
-              if (this.value) {
-                // Use the new function to submit the form
-                document.getElementById('timestamp').value = new Date().toISOString();
-                submitToSheet();
-              } else {
-                validateAndProceed(currentQuestion);
-              }
-            } else {
-              validateAndProceed(currentQuestion);
+            e.preventDefault(); // Prevent default form submission
+            
+            // For text/email/phone inputs, trigger validation
+            if (this.type === 'text' || this.type === 'email' || this.type === 'tel') {
+              // Let the main keydown handler take care of it
+              // This helps prevent double processing of Enter key
+              return;
             }
           }
         });
