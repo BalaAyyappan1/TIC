@@ -821,7 +821,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
               
               <!-- Email Question (Question 2) - initially hidden -->
-              <div class="question-container" id="question-2">
+              <div class="question-container" id="question-4">
                 <div class="back-button-container">
                   <button class="back-button" type="button" onclick="showQuestion(1)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
@@ -846,7 +846,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
               
               <!-- Phone Question (Question 3) - initially hidden -->
-              <div class="question-container" id="question-3">
+              <div class="question-container" id="question-5">
                   <div class="back-button-container">
                       <button class="back-button" type="button" onclick="showQuestion(2)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
@@ -871,7 +871,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
 
               <!-- Service Question (Question 4) - initially hidden -->
-              <div class="question-container" id="question-4">
+              <div class="question-container" id="question-2">
                   <div class="back-button-container">
                       <button class="back-button" type="button" onclick="showQuestion(3)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
@@ -881,45 +881,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <h2 class="question-title">What service do you require?</h2>
                 
                   <div class="service-selector">
-                    <div class="selector-label">Select a service</div>
+                    <div class="selector-label">Select multiple services (click to select)</div>
                     
                     <div class="options-container">
                       <div class="option-item" data-value="branding">
                         <div class="option-content">
-                          <div class="option-radio"></div>
+                          <div class="option-checkbox"></div>
                           <div class="option-text">Branding</div>
                         </div>
                       </div>
                       
                       <div class="option-item" data-value="website-development">
                         <div class="option-content">
-                          <div class="option-radio"></div>
+                          <div class="option-checkbox"></div>
                           <div class="option-text">Website Development</div>
                         </div>
                       </div>
                       
                       <div class="option-item" data-value="mobile-app-development">
                         <div class="option-content">
-                          <div class="option-radio"></div>
+                          <div class="option-checkbox"></div>
                           <div class="option-text">Mobile App Development</div>
                         </div>
                       </div>
                       
                       <div class="option-item" data-value="ui-ux-design">
                         <div class="option-content">
-                          <div class="option-radio"></div>
+                          <div class="option-checkbox"></div>
                           <div class="option-text">UI/UX Design</div>
                         </div>
                       </div>
                       <div class="option-item" data-value="brand-photoshoots">
                         <div class="option-content">
-                          <div class="option-radio"></div>
+                          <div class="option-checkbox"></div>
                           <div class="option-text">Brand Photoshoots</div>
                         </div>
                       </div>
                       <div class="option-item" data-value="social-media-marketing">
                         <div class="option-content">
-                          <div class="option-radio"></div>
+                          <div class="option-checkbox"></div>
                           <div class="option-text">Social Media Marketing</div>
                         </div>
                       </div>
@@ -938,7 +938,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
 
               <!-- Category Question (Question 5) - initially hidden -->
-              <div class="question-container" id="question-5">
+              <div class="question-container" id="question-3">
                   <div class="back-button-container">
                       <button class="back-button" type="button" onclick="showQuestion(4)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
@@ -1265,13 +1265,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             align-items: center;
           }
 
-          .option-radio {
+          .option-checkbox {
             width: 20px;
             height: 20px;
             border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 50%;
+            border-radius: 4px;
             margin-right: 12px;
             transition: all 0.3s ease;
+            position: relative;
+          }
+          
+          .option-checkbox.selected {
+            background-color: #fff;
+            border-color: #fff;
+          }
+          
+          .option-checkbox.selected::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid black;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
           }
 
           .option-text {
@@ -1433,6 +1451,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           .option-item:hover {
             background: rgba(255,255,255,0.15);
           }
+          
+          /* Checkbox item styles for multiple selection */
+          .option-item.selected {
+            background: rgba(255,255,255,0.2);
+          }
         </style>
 
         <script>
@@ -1493,25 +1516,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               });
             });
             
-            // Service selection
+            // Service selection - updated for multiple selections
+            const selectedServices = [];
+            
             document.querySelectorAll('.option-item').forEach(item => {
               item.addEventListener('click', function() {
-                // Remove selected state from all options
-                document.querySelectorAll('.option-item').forEach(opt => {
-                  opt.style.background = 'rgba(255,255,255,0.1)';
-                  opt.querySelector('.option-radio').style.borderColor = 'rgba(255,255,255,0.5)';
-                  opt.querySelector('.option-radio').style.background = 'transparent';
-                });
+                const value = this.getAttribute('data-value');
+                const checkbox = this.querySelector('.option-checkbox');
                 
-                // Add selected state to clicked option
-                this.style.background = 'rgba(255,255,255,0.2)';
-                const radio = this.querySelector('.option-radio');
-                radio.style.borderColor = '#fff';
-                radio.style.background = '#fff';
-                radio.style.boxShadow = '0 0 0 4px rgba(255,255,255,0.2)';
+                // Toggle selection
+                if (this.classList.contains('selected')) {
+                  // Remove selection
+                  this.classList.remove('selected');
+                  checkbox.classList.remove('selected');
+                  
+                  // Remove from selected services array
+                  const index = selectedServices.indexOf(value);
+                  if (index > -1) {
+                    selectedServices.splice(index, 1);
+                  }
+                } else {
+                  // Add selection
+                  this.classList.add('selected');
+                  checkbox.classList.add('selected');
+                  
+                  // Add to selected services array
+                  selectedServices.push(value);
+                }
                 
-                // Set the hidden input value
-                document.getElementById('selected-service').value = this.getAttribute('data-value');
+                // Update the hidden input with comma-separated values
+                document.getElementById('selected-service').value = selectedServices.join(', ');
                 
                 // Hide error if showing
                 document.getElementById('service-error').style.opacity = '0';
@@ -1552,7 +1586,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 const serviceInput = document.getElementById('selected-service');
                 if (!serviceInput.value) {
                   isValid = false;
-                  errorMsg = 'Please select a service';
+                  errorMsg = 'Please select at least one service';
                 }
                 break;
             }
